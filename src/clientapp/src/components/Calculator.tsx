@@ -110,6 +110,10 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         this.getCalculatorResponse = this.getCalculatorResponse.bind(this)
     }
 
+    componentDidMount() {
+        document.title = "Crystal Calculator"
+    }
+
     updateCustomRewards(state: ICustomRewardsState) {
         this.values.customRewards = state
         this.getCalculatorResponse()
