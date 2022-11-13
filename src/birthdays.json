@@ -1,0 +1,101 @@
+{
+	"BirthdaysOptions": {
+		"Birthdays": [
+			{
+				"name": "Fu Hua",
+				"day": 9,
+				"month": 2
+			},
+			{
+				"name": "Rita",
+				"day": 1,
+				"month": 3
+			},
+			{
+				"name": "Theresa",
+				"day": 28,
+				"month": 3
+			},
+			{
+				"name": "Mei",
+				"day": 13,
+				"month": 4
+			},
+			{
+				"name": "Himeko",
+				"day": 11,
+				"month": 6
+			},
+			{
+				"name": "Yae",
+				"day": 22,
+				"month": 7
+			},
+			{
+				"name": "Bronya",
+				"day": 8,
+				"month": 8
+			},
+			{
+				"name": "Elysia",
+				"day": 11,
+				"month": 11
+			},
+			{
+				"name": "Kiana",
+				"day": 7,
+				"month": 12
+			},
+			{
+				"name": "Raven",
+				"day": 19,
+				"month": 6
+			},
+			{
+				"name": "Durandal",
+				"day": 1,
+				"month": 1
+			},
+			{
+				"name": "Carole",
+				"day": 13,
+				"month": 9
+			},
+			{
+				"name": "Mobius",
+				"day": 30,
+				"month": 4
+			},
+			{
+				"name": "Seele",
+				"day": 18,
+				"month": 10
+			},
+			{
+				"name": "Pardofelis",
+				"day": 11,
+				"month": 7
+			},
+			{
+				"name": "Eden",
+				"day": 31,
+				"month": 10
+			},
+			{
+				"name": "Griseo",
+				"day": 11,
+				"month": 12
+			},
+			{
+				"name": "Vill-V",
+				"day": 5,
+				"month": 5
+			},
+			{
+				"name": "Aponia",
+				"day": 25,
+				"month": 5
+			},
+		]
+	}
+}

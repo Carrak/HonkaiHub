@@ -1,0 +1,91 @@
+{
+	"CalcOptions": {
+		"breakthrough_lvl": 81,
+		"expansion_price": 280,
+		"focused_price": 280,
+		"elf_price": 150,
+		"sp_price": 120,
+		"dorm_price": 200,
+		"dailies": 40,
+		"armada": 25,
+		"maintenance": 600,
+		"hyperion_lounge": 200,
+		"monthly_card": 60,
+		"monthly_card_bonus": 500,
+		"monthly_card_days_bonus": 15,
+		"survey": 200,
+		"weekly_share": 30,
+		"character_birthday": 120,
+		"days_version": 42,
+		"bp_avg_exp_daily": 1700,
+		"bp_exp_per_level": 1000,
+		"abyss": {
+			"ex_nirvana_myriad_1-50": 640,
+			"ex_nirvana_myriad_51-100": 570,
+			"ex_nirvana": 520,
+			"ex_redlotus": 500,
+			"ex_agony3": 420,
+			"ex_agony2": 340,
+			"ex_agony1": 280,
+			"ex_sinful3": 220,
+			"ex_sinful2": 200,
+			"ex_sinful1": 190,
+			"ex_forbidden": 180,
+			"masters_redlotus": 420,
+			"masters_agony_redlotus": 340,
+			"masters_agony_osin": 270
+		},
+		"elysian_realm": {
+			"abstinence": 500,
+			"submergence": 450,
+			"inferno": 360,
+			"shroud": 280,
+			"void": 120
+		},
+		"vanguard": {
+			"rewards": [
+				{ "condition": 10, "reward": 60 },
+				{ "condition": 15, "reward": 60 },
+				{ "condition": 25, "reward": 60 },
+				{ "condition": 30, "reward": 60 },
+				{ "condition": 35, "reward": 60 },
+				{ "condition": 40, "reward": 60	},
+				{	"condition": 55, "reward": 60 },
+				{ "condition": 65, "reward": 60 },
+				{ "condition": 70, "reward": 60 }
+			]
+		},
+		"knight": {
+			"rewards": [
+				{ "condition": 10, "reward": 180 },
+				{ "condition": 30, "reward": 180 },
+				{ "condition": 65, "reward": 180 },
+				{ "condition": 70, "reward": 180 },
+			]
+		},
+		"ex_arena": {
+			"rewards": [
+				{ "condition": 2, "reward": 70 },
+				{ "condition": 3, "reward": 70 },
+			]
+		},
+		"arena": {
+			"rewards": [
+				{ "condition": 2, "reward": 40 },
+				{ "condition": 3, "reward": 50 },
+			]
+		},
+		"sign_in": {
+			"rewards": [
+				{ "condition": 1, "reward": 50 },
+				{ "condition": 6,	"reward": 50 },
+				{ "condition": 8, "reward": 50 },
+				{ "condition": 13, "reward": 50 },
+				{	"condition": 15, "reward": 50 },
+				{ "condition": 20, "reward": 50 },
+				{ "condition": 22, "reward": 50 },
+				{	"condition": 29, "reward": 50 }
+			]
+		}
+	}
+}

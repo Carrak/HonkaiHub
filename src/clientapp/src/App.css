@@ -1,0 +1,85 @@
+body {
+    background-color: #383838;
+    background-image: url("../public/TUNA.png");
+    background-repeat: no-repeat;
+    background-position: left 850px top 79px;
+    background-size: 1200px;
+    background-attachment: fixed;
+}
+
+.white {
+    color: white;
+}
+
+.notfound {
+    padding-left: 40px;
+    font-size: 30px;
+}
+
+.balance-box {
+    display: flex;
+    column-gap: 7px;
+    align-items: center;
+}
+
+.inputs-box {
+    display: flex;
+    align-items: start;
+}
+
+.top-note {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.tooltip-icon {
+    margin-top: 5px;
+}
+
+.reward-total-text {
+    color: white;
+    font-size: 20px;
+}
+
+.reward-total-row {
+    display: flex;
+}
+
+.currency-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.centered-image{
+    margin-right: 100%;
+    margin-top: 50%;
+}
+
+.content {
+    margin-bottom: 100px;
+    padding-top: 100px;
+}
+
+.footer {
+    background-color: #2d2d2d;
+    color: white;
+    height: 80px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 100%;
+}
+
+.nav-menu {
+    height: 80px;
+    background-color: #2d2d2d;
+}
+
+.navbar-brand {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
