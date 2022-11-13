@@ -1,5 +1,4 @@
 ﻿using HonkaiCalc.Services;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HonkaiCalc
@@ -23,10 +22,9 @@ namespace HonkaiCalc
             {
                 return Ok(_calculator.Calculate(calculatorParams));
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
-                return StatusCode(500);
+                return StatusCode(422);
             }
         }
     }
