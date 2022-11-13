@@ -37,7 +37,6 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 
 app.UseCors("cors");
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
