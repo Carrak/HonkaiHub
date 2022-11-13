@@ -6,8 +6,8 @@ import Checkmarks, { ICheckmarksState } from "./Checkmarks";
 import { StyledTextField } from "./textfields/StyledTextField";
 
 interface IBalanceProps {
-    updateBalance: (state: IBalanceState) => any
-    updateCheckmarks: (state: ICheckmarksState) => any
+    updateBalance: (state: IBalanceState, update: boolean) => any
+    updateCheckmarks: (state: ICheckmarksState, update: boolean) => any
 }
 
 interface IBalanceState {
@@ -37,7 +37,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
         if (inputs) {
             this.state = JSON.parse(inputs);
 
-            this.props.updateBalance(this.state)
+            this.props.updateBalance(this.state, false)
         }
         this.onChangeCrystals = this.onChangeCrystals.bind(this)
         this.onChangeExpansion = this.onChangeExpansion.bind(this)
@@ -48,7 +48,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
     }
 
     update() {
-        this.props.updateBalance(this.state)
+        this.props.updateBalance(this.state, true)
         localStorage.setItem("balance", JSON.stringify(this.state))
     }
 

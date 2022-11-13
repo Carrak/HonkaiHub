@@ -8,7 +8,7 @@ import { Component, Fragment } from "react";
 import { StyledTextField } from "./textfields/StyledTextField";
 
 interface IDateInputsProps {
-    updateDates: (state: IDateInputsState) => any
+    updateDates: (state: IDateInputsState, update: boolean) => any
 }
 
 interface IDateInputsState {
@@ -35,12 +35,12 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                 valueTo: dayjs(stateJson.valueTo),
                 versionFrom: dayjs(stateJson.versionFrom)
             }
-            this.props.updateDates(this.state)
+            this.props.updateDates(this.state, false)
         }
     }
 
     update() {
-        this.props.updateDates(this.state)
+        this.props.updateDates(this.state, true)
         localStorage.setItem("dates", JSON.stringify(this.state))
     }
 

@@ -112,31 +112,38 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
     componentDidMount() {
         document.title = "Crystal Calculator"
-    }
+        document.body.style.backgroundImage = "url(\"/CAT.png\")"
+        document.body.style.backgroundRepeat = "no-repeat"
+        document.body.style.backgroundPosition = "left 1050px top 110px"
+        document.body.style.backgroundSize = "1100px"
+        document.body.style.backgroundAttachment = "fixed"
 
-    updateCustomRewards(state: ICustomRewardsState) {
+        this.getCalculatorResponse()
+    }   
+
+    updateCustomRewards(state: ICustomRewardsState, update: boolean) {
         this.values.customRewards = state
-        this.getCalculatorResponse()
+        if (update) this.getCalculatorResponse()
     }
 
-    updateBalance(state: IBalanceState) {
+    updateBalance(state: IBalanceState, update: boolean) {
         this.values.balance = state
-        this.getCalculatorResponse()
+        if (update) this.getCalculatorResponse()
     }
 
-    updateDates(state: IDateInputsState) {
+    updateDates(state: IDateInputsState, update: boolean) {
         this.values.dates = state
-        this.getCalculatorResponse()
+        if (update) this.getCalculatorResponse()
     }
 
-    updateSettings(state: ISettingsState) {
+    updateSettings(state: ISettingsState, update: boolean) {
         this.values.settings = state
-        this.getCalculatorResponse()
+        if (update) this.getCalculatorResponse()
     }
 
-    updateCheckmarks(state: ICheckmarksState) {
+    updateCheckmarks(state: ICheckmarksState, update: boolean) {
         this.values.checkmarks = state
-        this.getCalculatorResponse()
+        if (update) this.getCalculatorResponse()
     }
 
     getCalculatorResponse() {
@@ -190,8 +197,6 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             headers: myHeaders,
             body: raw
         };
-
-        console.log(options.body)
 
         fetch("https://localhost:5000/api/calc", options)
             .then(res => res.json())

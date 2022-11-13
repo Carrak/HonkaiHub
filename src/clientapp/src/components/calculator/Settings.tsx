@@ -6,7 +6,7 @@ import { bp, exalted, realm, manifold, select } from "../../consts/Dropdowns";
 import { getNum } from "../../consts/Utility";
 
 interface ISettingsProps {
-    updateSettings: (state: ISettingsState) => any
+    updateSettings: (state: ISettingsState, update: boolean) => any
 }
 
 interface ISettingsState {
@@ -40,7 +40,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
         let inputs = localStorage.getItem("settings")
         if (inputs) {
             this.state = JSON.parse(inputs);
-            this.props.updateSettings(this.state)
+            this.props.updateSettings(this.state, false)
         }
 
         this.onChangeLevel = this.onChangeLevel.bind(this)
@@ -55,7 +55,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
     }
 
     update() {
-        this.props.updateSettings(this.state)
+        this.props.updateSettings(this.state, true)
         localStorage.setItem("settings", JSON.stringify(this.state))
     }
 

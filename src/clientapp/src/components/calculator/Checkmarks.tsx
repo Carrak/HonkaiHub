@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, FormGroup, Grid } from '@mui/material'
 import { Component, Fragment, SyntheticEvent } from 'react'
 
 interface ICheckmarksProps {
-    updateCheckmarks: (state: ICheckmarksState) => any
+    updateCheckmarks: (state: ICheckmarksState, update: boolean) => any
 }
 
 interface ICheckmarksState {
@@ -22,7 +22,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
         let inputs = localStorage.getItem("checkmarks")
         if (inputs) {
             this.state = JSON.parse(inputs);
-            this.props.updateCheckmarks(this.state)
+            this.props.updateCheckmarks(this.state, false)
         }
 
         this.onChangeFilledSurvey = this.onChangeFilledSurvey.bind(this)
@@ -30,7 +30,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
     }
 
     update() {
-        this.props.updateCheckmarks(this.state)
+        this.props.updateCheckmarks(this.state, true)
         localStorage.setItem("checkmarks", JSON.stringify(this.state))
     }
 

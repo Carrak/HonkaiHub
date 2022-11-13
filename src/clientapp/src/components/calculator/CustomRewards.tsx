@@ -7,7 +7,7 @@ import { getNum } from "../../consts/Utility";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
 interface ICustomRewardsProps {
-    updateCustomRewards: (state: ICustomRewardsState) => any
+    updateCustomRewards: (state: ICustomRewardsState, update: boolean) => any
 }
 
 interface ICustomReward {
@@ -36,7 +36,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
         let inputs = localStorage.getItem("customRewards")
         if (inputs) {
             this.state = JSON.parse(inputs);
-            this.props.updateCustomRewards(this.state)
+            this.props.updateCustomRewards(this.state, false)
         }
 
         this.getAndIncreaseId = this.getAndIncreaseId.bind(this);
@@ -48,7 +48,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
 
 
     update() {
-        this.props.updateCustomRewards(this.state)
+        this.props.updateCustomRewards(this.state, true)
         localStorage.setItem("customRewards", JSON.stringify(this.state))
     }
 

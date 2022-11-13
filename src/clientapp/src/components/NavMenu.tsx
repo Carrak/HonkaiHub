@@ -7,7 +7,7 @@ class NavMenu extends Component {
     render() {
         return <Navbar className="nav-menu fixed-top" dark expand="xs">
             <NavbarBrand href="/">
-                <img src="YattaXtals.png" width="69px" />
+                <img src="/YattaXtals.png" width="69px" />
                 Honkai Hub
             </NavbarBrand>
             <Nav navbar className="me-auto">
