@@ -112,14 +112,30 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
     componentDidMount() {
         document.title = "Crystal Calculator"
-        document.body.style.backgroundImage = "url(\"/CAT.png\")"
-        document.body.style.backgroundRepeat = "no-repeat"
-        document.body.style.backgroundPosition = "left 1050px top 110px"
-        document.body.style.backgroundSize = "1100px"
-        document.body.style.backgroundAttachment = "fixed"
+        this.showCat(window.innerWidth)
+        window.addEventListener("resize", () => this.showCat(window.innerWidth))
 
         this.getCalculatorResponse()
-    }   
+    }  
+
+    showCat(width: number) {
+        console.log(width)
+        if (width >= 900) {
+            document.body.style.backgroundImage = "url(\"/CAT.png\")"
+            document.body.style.backgroundRepeat = "no-repeat"
+            document.body.style.backgroundPosition = "left 55vw top 10vh"
+            document.body.style.backgroundSize = "60vw"
+            document.body.style.backgroundAttachment = "fixed"
+        }
+        else
+        {
+            document.body.style.backgroundImage = ""
+            document.body.style.backgroundRepeat = ""
+            document.body.style.backgroundPosition = ""
+            document.body.style.backgroundSize = ""
+            document.body.style.backgroundAttachment = ""
+        }
+    }
 
     updateCustomRewards(state: ICustomRewardsState, update: boolean) {
         this.values.customRewards = state
@@ -207,21 +223,21 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
     render() {
         return <Fragment>
-            <Grid minWidth="1080px" maxWidth="1920px" paddingLeft={3} container className="content">
-                <Grid item xs={3.7}>
-                    <Grid container paddingLeft={2} paddingRight={2} columnSpacing={5} rowSpacing={1}>
+            <Grid paddingLeft={2} paddingRight={2} container className="content">
+                <Grid item xs={12} md={3.7}>
+                    <Grid container columnSpacing={2.5} rowSpacing={1}>
                         <Grid item xs={12}><DateInputs updateDates={this.updateDates} /></Grid>
                         <Grid item xs={6}><Settings updateSettings={this.updateSettings} /></Grid>
                         <Grid item xs={6}><Balance updateCheckmarks={this.updateCheckmarks} updateBalance={this.updateBalance} /></Grid>
                         <Grid item xs={12} mt={2}><CustomRewards updateCustomRewards={this.updateCustomRewards}/></Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={0.3} display="flex" justifyContent="center">
+                <Grid item md={0.5} display="flex" justifyContent="center">
                     <Divider orientation="vertical" sx={{ backgroundColor: "#FFFFFF", borderRightWidth: '2px' }} />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={12} md={2}>
                     <Grid container direction="column" rowSpacing={2}>
-                        <Grid item>
+                        <Grid item paddingLeft={2} paddingRight={2}>
                             <RewardTotal totals={this.state.total} />
                         </Grid>
                         <Grid item>
