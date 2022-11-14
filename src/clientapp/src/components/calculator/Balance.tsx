@@ -1,4 +1,4 @@
-import { Box, Grid, Tooltip } from "@mui/material";
+import { Box, Grid, IconButton, Tooltip } from "@mui/material";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { Component, Fragment } from "react";
 import { getNum } from "../../consts/Utility";
@@ -83,8 +83,8 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
                     Balance&nbsp;
-                    <Tooltip title={tooltip}>
-                        <HelpOutlineIcon className="tooltip-icon"/>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
+                        <HelpOutlineIcon className="tooltip-icon" />
                     </Tooltip>
                 </Grid>
                 <Grid item>

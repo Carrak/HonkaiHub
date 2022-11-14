@@ -100,14 +100,14 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
 
         return <Fragment>
             <Grid container direction="column" rowSpacing={1}>
-                <Grid item className="top-note" mb={1}>
+                <Grid item className="top-note">
                     Custom rewards&nbsp;
-                    <Tooltip title={tooltip}>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
                         <HelpOutlineIcon className="tooltip-icon" />
                     </Tooltip>
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
-                    <Grid container direction="row" columnSpacing={0.5}>
+                    <Grid container direction="row" columnSpacing={0.5} paddingRight={4}>
                         <Grid item xs={3.5}>
                             <StyledTextField
                                 label="Name"

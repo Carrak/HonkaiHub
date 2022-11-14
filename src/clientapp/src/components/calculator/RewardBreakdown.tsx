@@ -1,4 +1,4 @@
-import { Grid, Tooltip } from '@mui/material'
+import { Grid, IconButton, Tooltip } from '@mui/material'
 import { Component, Fragment } from 'react'
 import { ICalculatorBreakdown } from '../Calculator'
 import { StyledReadonlyTextField } from './textfields/StyledTextField'
@@ -20,7 +20,7 @@ class RewardBreakdown extends Component<IRewardBreakdownProps> {
             <Grid container direction="row" rowSpacing={1.2} columnSpacing={1}>
                 <Grid item xs={12} className="top-note">
                     Reward breakdown&nbsp;
-                    <Tooltip title={tooltip}>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
                         <HelpOutlineIcon className="tooltip-icon" />
                     </Tooltip>
                 </Grid>

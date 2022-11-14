@@ -1,5 +1,5 @@
 ﻿import { Fragment, Component } from "react";
-import { Grid, Tooltip } from "@mui/material";
+import { Grid, IconButton, Tooltip } from "@mui/material";
 import { StyledTextField } from "./textfields/StyledTextField";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { bp, exalted, realm, manifold, select } from "../../consts/Dropdowns";
@@ -107,7 +107,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
                     Settings&nbsp;
-                    <Tooltip title={tooltip}>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
                         <HelpOutlineIcon className="tooltip-icon" />
                     </Tooltip>
                 </Grid>

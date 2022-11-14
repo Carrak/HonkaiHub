@@ -1,4 +1,4 @@
-import { Grid, Stack, Tooltip } from "@mui/material";
+import { Grid, IconButton, Stack, Tooltip } from "@mui/material";
 import { Component, Fragment } from "react";
 import { ICalculatorTotal } from "../Calculator";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
@@ -20,7 +20,7 @@ class RewardTotal extends Component<IRewardTotalProps> {
             <Grid className="reward-total-text" container direction="column" rowSpacing={1}>
                 <Grid item className="top-note">
                     Reward total&nbsp;
-                    <Tooltip title={tooltip}>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
                         <HelpOutlineIcon className="tooltip-icon" />
                     </Tooltip>
                 </Grid>
@@ -30,29 +30,29 @@ class RewardTotal extends Component<IRewardTotalProps> {
                 <Grid item>
                     <Grid container direction="row" justifyContent="center">
                         <Stack display="flex" flexDirection="column" spacing={1}> 
-                            <div>
+                            <div className="flex">
                                 or &nbsp;
                                 <img src="Focused.webp" className="currency-icon" />{this.props.totals.focused} &nbsp;
                                 <img src="Crystals.webp" className="currency-icon" />{this.props.totals.focusedRemainder}
                             </div>
-                            <div>
+                            <div className="flex">
                                 or &nbsp;
                                 <img src="Expansion.webp" className="currency-icon" />{this.props.totals.expansion} &nbsp;
                                 <img src="Crystals.webp" className="currency-icon" />{this.props.totals.expansionRemainder}
                             </div>
-                            <div>
+                            <div className="flex">
                                 or &nbsp;
                                 <img src="ELF.webp" className="currency-icon" />{this.props.totals.elf} &nbsp;
                                 <img src="Crystals.webp" className="currency-icon" />{this.props.totals.elfRemainder}
                             </div>
-                            <div>
+                            <div className="flex">
                                 <Grid item className="reward-total-row">
                                     or &nbsp;
                                     <img src="SP.webp" className="currency-icon" />{this.props.totals.sp} &nbsp;
                                     <img src="Crystals.webp" className="currency-icon" />{this.props.totals.spRemainder}
                                 </Grid>
                             </div>
-                            <div>
+                            <div className="flex">
                                 or &nbsp;
                                 <img src="Dorm.webp" className="currency-icon" />{this.props.totals.dorm} &nbsp;
                                 <img src="Crystals.webp" className="currency-icon" />{this.props.totals.dormRemainder}

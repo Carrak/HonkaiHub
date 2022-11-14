@@ -46,15 +46,15 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
 
     render() {
         const tooltip = "Fields marked with * are required. Input the period for your calculations and when the current version started. " +
-            "Press this button to visit Honkai Update Log to find when the current version started"
+            "Visit Honkai Update Log to find when the current version started"
 
         let days: number | null = null
         if (this.state.valueTo && this.state.valueFrom)
             days = this.state.valueTo.diff(this.state.valueFrom, "day");
 
         return <Fragment>
-            <Grid container direction="row" rowSpacing={1} columnSpacing={1} paddingRight={4}>
-                <Grid item xs={3.9}>
+            <Grid container direction="row" rowSpacing={1} columnSpacing={1} paddingRight={2}>
+                <Grid item xs={3.8}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -67,7 +67,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={3.9}>
+                <Grid item xs={3.8}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -80,7 +80,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={3.9}>
+                <Grid item xs={3.8}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -89,17 +89,13 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                                 this.setState({ versionFrom: newValue }, () => this.update())
                             }}
                             label="Version since"
-                            renderInput={(params) => <StyledTextField required {...params} />}
+                            renderInput={(params) => <StyledTextField required helperText={<a target="_blank" href="https://honkaiimpact3.fandom.com/wiki/Update_Log">UPDATE LOG</a>} {...params} />}
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={0.3}>
-                    <Tooltip title={tooltip}>
-                        <Link href="https://honkaiimpact3.fandom.com/wiki/Update_Log" target="_blank">
-                            <IconButton>
-                                <HelpOutlineIcon />
-                            </IconButton>
-                        </Link>
+                <Grid item xs={0.6} display="flex" justifyContent="flex-start" mt={1}>
+                    <Tooltip title={tooltip} enterTouchDelay={0}>
+                        <HelpOutlineIcon className="tooltip-icon"/>
                     </Tooltip>
                 </Grid>
             </Grid>

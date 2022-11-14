@@ -22,6 +22,18 @@ body {
     align-items: start;
 }
 
+.flex {
+    display:flex;
+}
+
+a {
+    color: #8BBAFF
+}
+
+a:hover {
+    color: #3A8AFF
+}
+
 .top-note {
     display: flex;
     justify-content: center;
@@ -31,7 +43,7 @@ body {
 }
 
 .tooltip-icon {
-    margin-top: 5px;
+    color: white;
 }
 
 .reward-total-text {
@@ -77,4 +89,23 @@ body {
     font-size: 25px;
     display: flex;
     align-items: center;
+}
+
+.adaptive-font {
+    font-size: 16px;
+}
+
+@media screen and (max-width: 900px) {
+    .MuiInputBase-input {
+        font-size: 14px !important
+    }
+
+    .MuiInputLabel-root {
+        font-size: 14px !important;
+        padding-bottom: 20px !important;
+    }
+
+    .MuiFormControlLabel-label {
+        font-size: 14px !important;
+    }
 }
