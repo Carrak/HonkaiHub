@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HonkaiCalc
 {
     [Produces("application/json")]
-    [Route("api/calc")]
+    [Route("calc")]
     [ApiController]
     public class CalculatorController : ControllerBase
     {
