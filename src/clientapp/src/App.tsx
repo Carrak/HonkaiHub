@@ -1,6 +1,8 @@
 import Layout from './components/Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import './css/App.css';
+import './css/Mobile.css';
+import './css/Layout.css';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Calculator from './components/Calculator';

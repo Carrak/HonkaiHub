@@ -1,0 +1,20 @@
+.footer {
+    background-color: #2d2d2d;
+    color: white;
+    height: 80px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 100%;
+}
+
+.nav-menu {
+    height: 80px;
+    background-color: #2d2d2d;
+}
+
+.navbar-brand {
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}

@@ -60,7 +60,7 @@ a:hover {
     height: 40px;
 }
 
-.centered-image{
+.centered-image {
     margin-right: 100%;
     margin-top: 50%;
 }
@@ -68,44 +68,4 @@ a:hover {
 .content {
     margin-bottom: 100px;
     padding-top: 100px;
-}
-
-.footer {
-    background-color: #2d2d2d;
-    color: white;
-    height: 80px;
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    margin-top: 100%;
-}
-
-.nav-menu {
-    height: 80px;
-    background-color: #2d2d2d;
-}
-
-.navbar-brand {
-    font-size: 25px;
-    display: flex;
-    align-items: center;
-}
-
-.adaptive-font {
-    font-size: 16px;
-}
-
-@media screen and (max-width: 900px) {
-    .MuiInputBase-input {
-        font-size: 14px !important
-    }
-
-    .MuiInputLabel-root {
-        font-size: 14px !important;
-        padding-bottom: 20px !important;
-    }
-
-    .MuiFormControlLabel-label {
-        font-size: 14px !important;
-    }
 }

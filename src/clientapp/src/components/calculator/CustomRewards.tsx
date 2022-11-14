@@ -130,6 +130,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 value={x.currency ?? ""}
                                 onChange={(e) => this.onChangeCurrency(e, x.id)}
                                 select
+                                SelectProps={{ style: { fontSize: 14 } }}
                                 id={"scr" + x.id}>
                                 {select(currencies)}
                             </StyledTextField>
