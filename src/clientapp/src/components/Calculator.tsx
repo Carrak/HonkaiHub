@@ -199,6 +199,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         };
 
         fetch("https://honkaihub.com/api/calc", options)
+        fetch("https://api.honkaihub.com/calc", options)
             .then(res => res.json())
             .then(res => this.setState(res))
             .catch(err => console.log(err));
