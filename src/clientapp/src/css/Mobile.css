@@ -1,19 +1,29 @@
 @media screen and (max-width: 900px) {
     .MuiInputBase-input {
-        font-size: 14px !important
+        font-size: 13px !important
     }
 
     .MuiInputLabel-root {
-        font-size: 14px !important;
+        font-size: 13px !important;
         padding-bottom: 20px !important;
     }
 
     .MuiFormControlLabel-label {
-        font-size: 14px !important;
+        font-size: 13px !important;
+    }
+
+    .MuiOutlinedInput-root {
+        font-size: 13px !important;
     }
 
     .footer {
-        font-size: 14px !important;
+        font-size: 13px !important;
+        position: absolute !important;
+        bottom: 0 !important;
+    }
+
+    .top-note {
+        font-size: 18px !important;
     }
 
     .navbar-brand {

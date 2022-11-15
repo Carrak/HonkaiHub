@@ -4,6 +4,7 @@ import { Component, Fragment } from "react";
 import { getNum } from "../../consts/Utility";
 import Checkmarks, { ICheckmarksState } from "./Checkmarks";
 import { StyledTextField } from "./textfields/StyledTextField";
+import CustomTooltip from "../CustomTooltip";
 
 interface IBalanceProps {
     updateBalance: (state: IBalanceState, update: boolean) => any
@@ -83,9 +84,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
                     Balance&nbsp;
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon" />
-                    </Tooltip>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
@@ -130,7 +129,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
                             value={this.state.dorm ?? ""} onChange={this.onChangeDorm} />
                     </Box>
                 </Grid>
-                <Grid item mt={1}>
+                <Grid item mt={1} ml={0.8}>
                     <Checkmarks updateCheckmarks={this.props.updateCheckmarks}/>
                 </Grid>
             </Grid>

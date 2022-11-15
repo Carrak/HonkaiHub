@@ -5,6 +5,7 @@ import { currencies, select } from "../../consts/Dropdowns";
 import { StyledTextField } from "./textfields/StyledTextField";
 import { getNum } from "../../consts/Utility";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import CustomTooltip from "../CustomTooltip";
 
 interface ICustomRewardsProps {
     updateCustomRewards: (state: ICustomRewardsState, update: boolean) => any
@@ -102,9 +103,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
             <Grid container direction="column" rowSpacing={1}>
                 <Grid item className="top-note">
                     Custom rewards&nbsp;
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon" />
-                    </Tooltip>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
                     <Grid container direction="row" columnSpacing={0.5} paddingRight={4}>
@@ -130,7 +129,6 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 value={x.currency ?? ""}
                                 onChange={(e) => this.onChangeCurrency(e, x.id)}
                                 select
-                                SelectProps={{ style: { fontSize: 14 } }}
                                 id={"scr" + x.id}>
                                 {select(currencies)}
                             </StyledTextField>

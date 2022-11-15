@@ -2,6 +2,7 @@ import { Grid, IconButton, Stack, Tooltip } from "@mui/material";
 import { Component, Fragment } from "react";
 import { ICalculatorTotal } from "../Calculator";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import CustomTooltip from "../CustomTooltip";
 
 interface IRewardTotalProps {
     totals: ICalculatorTotal
@@ -20,9 +21,7 @@ class RewardTotal extends Component<IRewardTotalProps> {
             <Grid className="reward-total-text" container direction="column" rowSpacing={1}>
                 <Grid item className="top-note">
                     Reward total&nbsp;
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon" />
-                    </Tooltip>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item display="flex" justifyContent="center" alignItems="center">
                     <img src="Crystals.webp" className="currency-icon" />{this.props.totals.grandTotal}

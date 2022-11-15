@@ -4,6 +4,7 @@ import { StyledTextField } from "./textfields/StyledTextField";
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { bp, exalted, realm, manifold, select } from "../../consts/Dropdowns";
 import { getNum } from "../../consts/Utility";
+import CustomTooltip from "../CustomTooltip";
 
 interface ISettingsProps {
     updateSettings: (state: ISettingsState, update: boolean) => any
@@ -93,7 +94,12 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
     }
 
     render() {
-        const tooltip = "Fields marked with * are required. For calculations abyss is only available for level 70 or higher"
+        const tooltip = <p>
+            Fields marked with * are required. For calculations abyss is only available for level 70 or higher. <br />
+            - Hints - <br />
+            Sign-in days claimed - how many times you logged in this month <br />
+            Monthly card (claimed to 15) - how many days you claimed for the 500 crystal bonus, e.g. if the page says "4/15", you specify this as 4
+        </p>
 
         let abyssSelect;
         if (this.state.level) {
@@ -107,9 +113,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
                     Settings&nbsp;
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon" />
-                    </Tooltip>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item>
                     <StyledTextField

@@ -56,16 +56,11 @@ a:hover {
 }
 
 .currency-icon {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 
 .centered-image {
     margin-right: 100%;
     margin-top: 50%;
-}
-
-.content {
-    margin-bottom: 100px;
-    padding-top: 100px;
 }

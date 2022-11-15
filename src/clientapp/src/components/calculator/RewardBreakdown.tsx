@@ -3,6 +3,7 @@ import { Component, Fragment } from 'react'
 import { ICalculatorBreakdown } from '../Calculator'
 import { StyledReadonlyTextField } from './textfields/StyledTextField'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import CustomTooltip from '../CustomTooltip';
 
 interface IRewardBreakdownProps {
     breakdown: ICalculatorBreakdown
@@ -20,9 +21,7 @@ class RewardBreakdown extends Component<IRewardBreakdownProps> {
             <Grid container direction="row" rowSpacing={1.2} columnSpacing={1}>
                 <Grid item xs={12} className="top-note">
                     Reward breakdown&nbsp;
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon" />
-                    </Tooltip>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item xs={6}>
                     <StyledReadonlyTextField id="abyss" label="Abyss" value={this.props.breakdown.abyss} />

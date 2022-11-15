@@ -123,8 +123,8 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         if (width >= 900) {
             document.body.style.backgroundImage = "url(\"/CAT.png\")"
             document.body.style.backgroundRepeat = "no-repeat"
-            document.body.style.backgroundPosition = "left 55vw top 10vh"
-            document.body.style.backgroundSize = "60vw"
+            document.body.style.backgroundPosition = "left 53vw top 10vh"
+            document.body.style.backgroundSize = "1100px"
             document.body.style.backgroundAttachment = "fixed"
         }
         else
@@ -229,7 +229,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
                         <Grid item xs={12}><DateInputs updateDates={this.updateDates} /></Grid>
                         <Grid item xs={6}><Settings updateSettings={this.updateSettings} /></Grid>
                         <Grid item xs={6}><Balance updateCheckmarks={this.updateCheckmarks} updateBalance={this.updateBalance} /></Grid>
-                        <Grid item xs={12} mt={2}><CustomRewards updateCustomRewards={this.updateCustomRewards}/></Grid>
+                        <Grid item xs={12}><CustomRewards updateCustomRewards={this.updateCustomRewards}/></Grid>
                     </Grid>
                 </Grid>
                 <Grid item md={0.5} display="flex" justifyContent="center">

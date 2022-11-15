@@ -6,6 +6,7 @@ import { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { Component, Fragment } from "react";
 import { StyledTextField } from "./textfields/StyledTextField";
+import CustomTooltip from "../CustomTooltip";
 
 interface IDateInputsProps {
     updateDates: (state: IDateInputsState, update: boolean) => any
@@ -93,10 +94,8 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={0.6} display="flex" justifyContent="flex-start" mt={1}>
-                    <Tooltip title={tooltip} enterTouchDelay={0}>
-                        <HelpOutlineIcon className="tooltip-icon"/>
-                    </Tooltip>
+                <Grid item xs={0.6}>
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
             </Grid>
         </Fragment>
