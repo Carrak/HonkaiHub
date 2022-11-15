@@ -57,7 +57,8 @@ namespace HonkaiCalc.Services
 
             int sum = breakdown.Sum();
             int bonusFocused = fullVersions > 0 ? fullVersions : 0;
-            bonusFocused += (_co.BpAverageExpDaily * daysLastVersion / _co.BpExpPerLevel) >= 16 ? 1 : 0;
+            int requiredLevelCard = cp.BpThisVersion == Battlepass.KnightPaladin ? 16 : 6;
+            bonusFocused += (_co.BpAverageExpDaily * daysLastVersion / _co.BpExpPerLevel) >= requiredLevelCard ? 1 : 0;
 
             var total = new CalculatorRewardTotal(
                 grandTotal: sum,
