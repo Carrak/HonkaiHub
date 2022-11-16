@@ -1,4 +1,4 @@
-﻿namespace HonkaiCalc.Model
+﻿namespace HonkaiHub.Model
 {
     public class CharacterBirthday
     {

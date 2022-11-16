@@ -1,4 +1,4 @@
-﻿namespace HonkaiCalc
+﻿namespace HonkaiHub
 {
     public class CalculatorParams
     {

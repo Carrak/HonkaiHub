@@ -1,7 +1,7 @@
-﻿using HonkaiCalc.Model;
+﻿using HonkaiHub.Model;
 using Microsoft.Extensions.Options;
 
-namespace HonkaiCalc.Services
+namespace HonkaiHub.Services
 {
     public class BirthdaysService
     {
