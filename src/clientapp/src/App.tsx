@@ -19,6 +19,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path="/*" element={<Layout />}>
+                        <Route index element={<p className="content white notfound">This page is under construction!</p>} />
                         <Route path="calculator" element={<Calculator />} />
                         <Route path="*" element={<p className="content white notfound">Sorry, this page does not exist.</p>} />
                     </Route>
