@@ -1,7 +1,7 @@
-﻿using HonkaiCalc.Services;
+﻿using HonkaiHub.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HonkaiCalc
+namespace HonkaiHub
 {
     [Produces("application/json")]
     [Route("calc")]

@@ -1,5 +1,5 @@
-using HonkaiCalc.Model;
-using HonkaiCalc.Services;
+using HonkaiHub.Model;
+using HonkaiHub.Services;
 using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
