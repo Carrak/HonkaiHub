@@ -50,7 +50,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
 
         return <Fragment>
             <Grid container direction="row" columnSpacing={0.7}>
-                <Grid item xs={5.5}>
+                <Grid item xs={5.3} md={5.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -63,7 +63,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={5.5}>
+                <Grid item xs={5.3} md={5.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -76,7 +76,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={1} display="flex" justifyContent="flex-end">
+                <Grid item xs={1.4} md={1} display="flex" justifyContent="flex-end">
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
             </Grid>
