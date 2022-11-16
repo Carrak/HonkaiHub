@@ -6,7 +6,7 @@
     display: flex;
     align-items: center;
 
-    z-index: 100;
+    z-index: 10000;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -22,9 +22,18 @@ html {
     min-height: 100%;
 }
 
+.input-grid {
+    min-width: 500px;
+}
+
+.output-grid {
+    min-width: 250px;
+}
+
 .nav-menu {
     height: 80px;
     background-color: #2d2d2d;
+    z-index: 10000;
 }
 
 .navbar-brand {

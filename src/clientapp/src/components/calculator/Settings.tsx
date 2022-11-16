@@ -1,7 +1,6 @@
 ﻿import { Fragment, Component } from "react";
-import { Grid, IconButton, Tooltip } from "@mui/material";
+import { Grid } from "@mui/material";
 import { StyledTextField } from "./textfields/StyledTextField";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { bp, exalted, realm, manifold, select } from "../../consts/Dropdowns";
 import { getNum } from "../../consts/Utility";
 import CustomTooltip from "../CustomTooltip";

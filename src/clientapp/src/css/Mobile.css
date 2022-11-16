@@ -29,4 +29,12 @@
     .navbar-brand {
         font-size: 20px !important;
     }
+
+    .input-grid {
+        min-width: 0 !important;
+    }
+
+    .output-grid {
+        min-width: 0 !important;
+    }
 }

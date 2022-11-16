@@ -1,5 +1,4 @@
-import { Box, Grid, IconButton, Tooltip } from "@mui/material";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { Box, Grid } from "@mui/material";
 import { Component, Fragment } from "react";
 import { getNum } from "../../consts/Utility";
 import Checkmarks, { ICheckmarksState } from "./Checkmarks";
@@ -88,7 +87,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="Crystals.webp" className="currency-icon" />
+                        <img src="Crystals.webp" className="currency-icon" alt="" />
                         <StyledTextField id="crystals" label="Crystals"
                             value={this.state.crystals ?? ""}
                             onChange={this.onChangeCrystals} />
@@ -96,35 +95,35 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="Expansion.webp" className="currency-icon" />
+                        <img src="Expansion.webp" className="currency-icon" alt="" />
                         <StyledTextField id="expansion" label="Expansion cards"
                             value={this.state.expansion ?? ""} onChange={this.onChangeExpansion} />
                     </Box>
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="Focused.webp" className="currency-icon" />
+                        <img src="Focused.webp" className="currency-icon" alt="" />
                         <StyledTextField id="focused" label="Focused cards"
                             value={this.state.focused ?? ""} onChange={this.onChangeFocused} />
                     </Box>
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="ELF.webp" className="currency-icon" />
+                        <img src="ELF.webp" className="currency-icon" alt="" />
                         <StyledTextField id="elf" label="Elf cards"
                             value={this.state.elf ?? ""} onChange={this.onChangeElf} />
                     </Box>
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="SP.webp" className="currency-icon" />
+                        <img src="SP.webp" className="currency-icon" alt="" />
                         <StyledTextField id="sp" label="SP cards"
                             value={this.state.sp ?? ""} onChange={this.onChangeSP} />
                     </Box>
                 </Grid>
                 <Grid item>
                     <Box className="balance-box">
-                        <img src="Dorm.webp" className="currency-icon" />
+                        <img src="Dorm.webp" className="currency-icon" alt="" />
                         <StyledTextField id="dorm" label="Dorm cards"
                             value={this.state.dorm ?? ""} onChange={this.onChangeDorm} />
                     </Box>

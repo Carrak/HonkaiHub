@@ -1,7 +1,6 @@
-import { Grid, IconButton, Stack, Tooltip } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import { Component, Fragment } from "react";
 import { ICalculatorTotal } from "../Calculator";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CustomTooltip from "../CustomTooltip";
 
 interface IRewardTotalProps {
@@ -9,9 +8,6 @@ interface IRewardTotalProps {
 }
 
 class RewardTotal extends Component<IRewardTotalProps> {
-    constructor(props: IRewardTotalProps) {
-        super(props)
-    }
 
     render() {
         const tooltip = "Reward total is calculated when all the required fields are filled. " +
@@ -24,37 +20,37 @@ class RewardTotal extends Component<IRewardTotalProps> {
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item display="flex" justifyContent="center" alignItems="center">
-                    <img src="Crystals.webp" className="currency-icon" />{this.props.totals.grandTotal}
+                    <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.grandTotal}
                 </Grid>
                 <Grid item>
                     <Grid container direction="row" justifyContent="center">
                         <Stack display="flex" flexDirection="column" spacing={1}> 
                             <div className="flex">
                                 or &nbsp;
-                                <img src="Focused.webp" className="currency-icon" />{this.props.totals.focused} &nbsp;
-                                <img src="Crystals.webp" className="currency-icon" />{this.props.totals.focusedRemainder}
+                                <img src="Focused.webp" className="currency-icon" alt="focused cards" />{this.props.totals.focused} &nbsp;
+                                <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.focusedRemainder}
                             </div>
                             <div className="flex">
                                 or &nbsp;
-                                <img src="Expansion.webp" className="currency-icon" />{this.props.totals.expansion} &nbsp;
-                                <img src="Crystals.webp" className="currency-icon" />{this.props.totals.expansionRemainder}
+                                <img src="Expansion.webp" className="currency-icon" alt="expansion cards" />{this.props.totals.expansion} &nbsp;
+                                <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.expansionRemainder}
                             </div>
                             <div className="flex">
                                 or &nbsp;
-                                <img src="ELF.webp" className="currency-icon" />{this.props.totals.elf} &nbsp;
-                                <img src="Crystals.webp" className="currency-icon" />{this.props.totals.elfRemainder}
+                                <img src="ELF.webp" className="currency-icon" alt="ELF cards" />{this.props.totals.elf} &nbsp;
+                                <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.elfRemainder}
                             </div>
                             <div className="flex">
                                 <Grid item className="reward-total-row">
                                     or &nbsp;
-                                    <img src="SP.webp" className="currency-icon" />{this.props.totals.sp} &nbsp;
-                                    <img src="Crystals.webp" className="currency-icon" />{this.props.totals.spRemainder}
+                                    <img src="SP.webp" className="currency-icon" alt="SP cards" />{this.props.totals.sp} &nbsp;
+                                    <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.spRemainder}
                                 </Grid>
                             </div>
                             <div className="flex">
                                 or &nbsp;
-                                <img src="Dorm.webp" className="currency-icon" />{this.props.totals.dorm} &nbsp;
-                                <img src="Crystals.webp" className="currency-icon" />{this.props.totals.dormRemainder}
+                                <img src="Dorm.webp" className="currency-icon" alt="dorm cards" />{this.props.totals.dorm} &nbsp;
+                                <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.dormRemainder}
                             </div>
                         </Stack>
                     </Grid>

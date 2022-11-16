@@ -1,5 +1,4 @@
-import { Grid, IconButton, Link, Tooltip } from "@mui/material";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { Grid } from "@mui/material";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { Dayjs } from 'dayjs';
@@ -54,8 +53,8 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
             days = this.state.valueTo.diff(this.state.valueFrom, "day");
 
         return <Fragment>
-            <Grid container direction="row" rowSpacing={1} columnSpacing={1} paddingRight={2}>
-                <Grid item xs={3.8}>
+            <Grid container direction="row" columnSpacing={0.7} paddingRight={2}>
+                <Grid item xs={3.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -68,7 +67,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={3.8}>
+                <Grid item xs={3.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -81,7 +80,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={3.8}>
+                <Grid item xs={4.4}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
@@ -90,7 +89,20 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                                 this.setState({ versionFrom: newValue }, () => this.update())
                             }}
                             label="Version since"
-                            renderInput={(params) => <StyledTextField required helperText={<a target="_blank" href="https://honkaiimpact3.fandom.com/wiki/Update_Log">UPDATE LOG</a>} {...params} />}
+                            renderInput={(params) =>
+                                <StyledTextField
+                                    required
+                                    helperText={
+                                        <a className="text-nowrap"
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            href="https://honkaiimpact3.fandom.com/wiki/Update_Log">
+                                            UPDATE LOG
+                                        </a>
+                                    }
+                                    {...params}
+                                />
+                            }
                         />
                     </LocalizationProvider>
                 </Grid>

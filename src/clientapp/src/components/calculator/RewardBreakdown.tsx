@@ -1,8 +1,7 @@
-import { Grid, IconButton, Tooltip } from '@mui/material'
+import { Grid } from '@mui/material'
 import { Component, Fragment } from 'react'
 import { ICalculatorBreakdown } from '../Calculator'
 import { StyledReadonlyTextField } from './textfields/StyledTextField'
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CustomTooltip from '../CustomTooltip';
 
 interface IRewardBreakdownProps {
@@ -10,9 +9,6 @@ interface IRewardBreakdownProps {
 }
 
 class RewardBreakdown extends Component<IRewardBreakdownProps> {
-    constructor(props: IRewardBreakdownProps) {
-        super(props)
-    }
 
     render() {
         const tooltip = "This section only includes crystal rewards, but cards are still included in Reward Total"

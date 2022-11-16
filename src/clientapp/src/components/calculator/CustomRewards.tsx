@@ -1,10 +1,9 @@
-import { Button, Grid, IconButton, Tooltip } from "@mui/material";
+import { Button, Grid, IconButton } from "@mui/material";
 import { Delete } from '@mui/icons-material'
 import { Component, Fragment } from "react";
 import { currencies, select } from "../../consts/Dropdowns";
 import { StyledTextField } from "./textfields/StyledTextField";
 import { getNum } from "../../consts/Utility";
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import CustomTooltip from "../CustomTooltip";
 
 interface ICustomRewardsProps {
@@ -106,7 +105,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
-                    <Grid container direction="row" columnSpacing={0.5} paddingRight={4}>
+                    <Grid container direction="row" columnSpacing={0.5} paddingRight={2}>
                         <Grid item xs={3.5}>
                             <StyledTextField
                                 label="Name"
@@ -134,7 +133,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                             </StyledTextField>
                         </Grid>
                         <Grid item xs={0.5}>
-                            <IconButton onClick={() => this.onRemove(x.id)}>
+                            <IconButton size="small" onClick={() => this.onRemove(x.id)}>
                                 <Delete />
                             </IconButton>
                         </Grid>

@@ -119,12 +119,11 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
     }  
 
     showCat(width: number) {
-        console.log(width)
         if (width >= 900) {
             document.body.style.backgroundImage = "url(\"/CAT.png\")"
             document.body.style.backgroundRepeat = "no-repeat"
-            document.body.style.backgroundPosition = "left 53vw top 10vh"
-            document.body.style.backgroundSize = "1100px"
+            document.body.style.backgroundPosition = "left max(55vw, 900px) top 100px"
+            document.body.style.backgroundSize = "900px"
             document.body.style.backgroundAttachment = "fixed"
         }
         else
@@ -214,7 +213,8 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             body: raw
         };
 
-        fetch("https://honkaihub.com/api/calc", options)
+        console.log(options.body)
+
         fetch("https://api.honkaihub.com/calc", options)
             .then(res => res.json())
             .then(res => this.setState(res))
@@ -224,7 +224,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
     render() {
         return <Fragment>
             <Grid paddingLeft={2} paddingRight={2} container className="content">
-                <Grid item xs={12} md={3.7}>
+                <Grid item xs={12} md={3.7} className="input-grid">
                     <Grid container columnSpacing={2.5} rowSpacing={1}>
                         <Grid item xs={12}><DateInputs updateDates={this.updateDates} /></Grid>
                         <Grid item xs={6}><Settings updateSettings={this.updateSettings} /></Grid>
@@ -235,7 +235,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
                 <Grid item md={0.5} display="flex" justifyContent="center">
                     <Divider orientation="vertical" sx={{ backgroundColor: "#FFFFFF", borderRightWidth: '2px' }} />
                 </Grid>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={12} md={2} className="output-grid">
                     <Grid container direction="column" rowSpacing={2}>
                         <Grid item paddingLeft={2} paddingRight={2}>
                             <RewardTotal totals={this.state.total} />
