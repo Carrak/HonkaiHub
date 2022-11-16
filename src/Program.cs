@@ -6,6 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSingleton<CalculatorService>();
 builder.Services.AddSingleton<BirthdaysService>();
+builder.Services.AddSingleton<GameVersionService>();
+
 
 builder.Services.AddControllersWithViews();
 
@@ -19,9 +21,12 @@ builder.Services.AddCors(options =>
 
 builder.Configuration.AddJsonFile("birthdays.json", false, true);
 builder.Configuration.AddJsonFile("constants.json", false, true);
+builder.Configuration.AddJsonFile("versions.json", false, true);
 
 builder.Services.Configure<CalculatorOptions>(builder.Configuration.GetSection("CalcOptions"));
 builder.Services.Configure<CharacterBirthdaysOptions>(builder.Configuration.GetSection("BirthdaysOptions"));
+builder.Services.Configure<VersionsOptions>(builder.Configuration.GetSection("Versions"));
+
 
 var app = builder.Build();
 

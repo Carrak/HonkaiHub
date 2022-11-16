@@ -42,9 +42,6 @@
         [ConfigurationKeyName("elf_price")]
         public int ElfCardPrice { get; init; }
 
-        [ConfigurationKeyName("days_version")]
-        public int DaysInVersion { get; init; }
-
         [ConfigurationKeyName("sign_in")]
         public ConditionedRewardContainer SignInRewards { get; init; }
 

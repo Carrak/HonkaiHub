@@ -14,7 +14,6 @@ interface IDateInputsProps {
 interface IDateInputsState {
     valueFrom: Dayjs | null;
     valueTo: Dayjs | null;
-    versionFrom: Dayjs | null;
 }
 
 class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
@@ -24,16 +23,14 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         this.state = {
             valueFrom: dayjs().startOf("day"),
             valueTo: null,
-            versionFrom: null
         }
 
         let inputs = localStorage.getItem("dates")
         if (inputs) {
             let stateJson = JSON.parse(inputs)
             this.state = {
-                valueFrom: dayjs(stateJson.valueFrom),
-                valueTo: dayjs(stateJson.valueTo),
-                versionFrom: dayjs(stateJson.versionFrom)
+                valueFrom: dayjs(stateJson.valueFrom).utc().startOf('day'),
+                valueTo: dayjs(stateJson.valueTo).utc().startOf('day'),
             }
             this.props.updateDates(this.state, false)
         }
@@ -45,68 +42,41 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
     }
 
     render() {
-        const tooltip = "Fields marked with * are required. Input the period for your calculations and when the current version started. " +
-            "Visit Honkai Update Log to find when the current version started"
+        const tooltip = "Fields marked with * are required. Input the period for your calculations."
 
         let days: number | null = null
         if (this.state.valueTo && this.state.valueFrom)
             days = this.state.valueTo.diff(this.state.valueFrom, "day");
 
         return <Fragment>
-            <Grid container direction="row" columnSpacing={0.7} paddingRight={2}>
-                <Grid item xs={3.5}>
+            <Grid container direction="row" columnSpacing={0.7}>
+                <Grid item xs={5.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueFrom}
                             label="Date from"
                             onChange={newValue => {
-                                this.setState(prevState => ({ ...prevState, valueFrom: newValue }), () => this.update())
+                                this.setState({ valueFrom: newValue?.utc().startOf('day') ?? null }, () => this.update())
                             }}
                             renderInput={(params) => <StyledTextField required helperText={(days ?? "?") + " days"} {...params} />}
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={3.5}>
+                <Grid item xs={5.5}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueTo}
                             onChange={(newValue) => {
-                                this.setState({ valueTo: newValue }, () => this.update())
+                                this.setState({ valueTo: newValue?.utc().startOf('day') ?? null }, () => this.update())
                             }}
                             label="Date to"
                             renderInput={(params) => <StyledTextField required {...params} />}
                         />
                     </LocalizationProvider>
                 </Grid>
-                <Grid item xs={4.4}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <DatePicker
-                            inputFormat="DD.MM.YYYY"
-                            value={this.state.versionFrom}
-                            onChange={(newValue) => {
-                                this.setState({ versionFrom: newValue }, () => this.update())
-                            }}
-                            label="Version since"
-                            renderInput={(params) =>
-                                <StyledTextField
-                                    required
-                                    helperText={
-                                        <a className="text-nowrap"
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            href="https://honkaiimpact3.fandom.com/wiki/Update_Log">
-                                            UPDATE LOG
-                                        </a>
-                                    }
-                                    {...params}
-                                />
-                            }
-                        />
-                    </LocalizationProvider>
-                </Grid>
-                <Grid item xs={0.6}>
+                <Grid item xs={1} display="flex" justifyContent="flex-end">
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
             </Grid>

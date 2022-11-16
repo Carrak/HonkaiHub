@@ -5,8 +5,6 @@
         public DateTime From { get; init; }
         public DateTime To { get; init; }
 
-        public DateTime VersionFrom { get; init; }
-
         public int BalanceCrystals { get; init; }
         public int BalanceExpansionCards { get; init; }
         public int BalanceFocusedCards { get; init; }

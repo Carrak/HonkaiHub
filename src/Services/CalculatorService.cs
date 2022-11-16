@@ -6,25 +6,29 @@ namespace HonkaiHub.Services
     public class CalculatorService
     {
         private readonly BirthdaysService _birthdays;
+        private readonly GameVersionService _gvs;
         private CalculatorOptions _co;
 
-        public CalculatorService(IOptionsMonitor<CalculatorOptions> options, BirthdaysService birthdays)
+        public CalculatorService(IOptionsMonitor<CalculatorOptions> options, BirthdaysService birthdays, GameVersionService gvs)
         {
             _birthdays = birthdays;
+            _gvs = gvs;
             _co = options.CurrentValue;
             options.OnChange(newOptions => _co = newOptions);
         }
 
         public CalculatorResponse Calculate(CalculatorParams cp)
         {
+            var versionFrom = _gvs.GetCurrentVersionStart(cp.From);
+
             int days = (cp.To - cp.From).Days;
             int weekdayFrom = DayOfWeek(cp.From.DayOfWeek);
             int weekdayTo = DayOfWeek(cp.To.DayOfWeek);
-            int daysRelativeToUpdate = (cp.To - cp.VersionFrom).Days;
+            int daysRelativeToUpdate = (cp.To - versionFrom).Days;
 
-            int daysThisVersion = (cp.From - cp.VersionFrom).Days;
-            int daysLeftThisVersion = Math.Min(days, _co.DaysInVersion - daysThisVersion);
-            int daysLastVersion = daysRelativeToUpdate % _co.DaysInVersion;
+            int daysThisVersion = (cp.From - versionFrom).Days;
+            int daysLeftThisVersion = Math.Min(days, _gvs.DaysInVersion - daysThisVersion);
+            int daysLastVersion = daysRelativeToUpdate % _gvs.DaysInVersion;
 
             // value for fullWeeks is -1 if "From" and "To" dates are on the same week,
             // 0 if they're on consequent weeks,
@@ -33,7 +37,7 @@ namespace HonkaiHub.Services
             int fullWeeks = weeklyResets - 1;
 
             // same logic explained above applies for fullVersions
-            int maintenancesCount = daysRelativeToUpdate / _co.DaysInVersion;
+            int maintenancesCount = _gvs.GetMaintenancesCount(versionFrom, cp.To);
             int fullVersions = maintenancesCount - 1;
 
             var customsDict = GetCustomRewards(cp.CustomRewards);
@@ -111,7 +115,7 @@ namespace HonkaiHub.Services
             int surveys = fullVersions > -1 ? fullVersions + (!filledSurvey ? 1 : 0) : 0;
             int streamCodes = fullVersions > -1 ? fullVersions + (!claimedCodes ? 1 : 0) : 0;
 
-            if (fullVersions > 0 && _co.DaysInVersion - daysLastVersion <= 5)
+            if (fullVersions > 0 && _gvs.DaysInVersion - daysLastVersion <= 5)
             {
                 surveys++;
                 streamCodes++;
