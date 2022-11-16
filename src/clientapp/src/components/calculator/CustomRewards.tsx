@@ -106,14 +106,14 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
                     <Grid container direction="row" columnSpacing={0.5} paddingRight={2}>
-                        <Grid item xs={3.5}>
+                        <Grid item xs={3.3}>
                             <StyledTextField
                                 label="Name"
                                 value={x.name}
                                 onChange={(e) => this.onChangeName(e, x.id)}
                                 id={"namecr" + x.id} />
                         </Grid>
-                        <Grid item xs={3.5}>
+                        <Grid item xs={3.3}>
                             <StyledTextField
                                 label="Amount"
                                 required
@@ -121,7 +121,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 onChange={(e) => this.onChangeAmount(e, x.id)}
                                 id={"acr" + x.id} />
                         </Grid>
-                        <Grid item xs={4.5}>
+                        <Grid item xs={4.3}>
                             <StyledTextField
                                 label="Currency"
                                 required
@@ -132,8 +132,8 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 {select(currencies)}
                             </StyledTextField>
                         </Grid>
-                        <Grid item xs={0.5}>
-                            <IconButton size="small" onClick={() => this.onRemove(x.id)}>
+                        <Grid item xs={1.1} display="flex" justifyContent="flex-end">
+                            <IconButton edge="end" size="small" onClick={() => this.onRemove(x.id)}>
                                 <Delete />
                             </IconButton>
                         </Grid>

@@ -36,7 +36,7 @@ class CustomTooltip extends Component<ICustomTooltipProps, ICustomTooltipState> 
                     disableTouchListener
                     title={this.props.tooltip}
                 >
-                    <IconButton size="small" onClick={this.handleTooltipOpen}>
+                    <IconButton edge="end" size="small" onClick={this.handleTooltipOpen}>
                         <HelpOutlineIcon className="tooltip-icon" />
                     </IconButton>
                 </Tooltip>
