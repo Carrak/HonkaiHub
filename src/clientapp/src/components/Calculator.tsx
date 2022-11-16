@@ -164,7 +164,6 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
     getCalculatorResponse() {
         if (this.values.dates?.valueFrom == null ||
             this.values.dates?.valueTo == null ||
-            this.values.dates?.versionFrom == null ||
             this.values.settings?.level == null ||
             (this.values.settings.level >= 70 && this.values.settings?.abyss == null) ||
             this.values.settings.realm == null ||
@@ -186,7 +185,6 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         let raw = JSON.stringify({
             From:                  this.values.dates.valueFrom,
             To:                    this.values.dates.valueTo,
-            VersionFrom:           this.values.dates.versionFrom,
             BalanceCrystals:       this.values.balance?.crystals ?? 0,
             BalanceExpansionCards: this.values.balance?.expansion ?? 0,
             BalanceFocusedCards:   this.values.balance?.focused ?? 0,
