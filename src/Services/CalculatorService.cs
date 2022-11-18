@@ -49,10 +49,10 @@ namespace HonkaiHub.Services
                             dailies: GetDailiesTotal(days),
                             signIn: GetSignInTotal(cp.From, cp.To, days, cp.SignInDays),
                             armada: GetArmadaTotal(weeklyResets),
-                            abyss: GetAbyssTotal(cp.AbyssTier, days, weekdayFrom, weekdayTo, fullWeeks),
+                            abyss: GetAbyssTotal(cp.AbyssTier, cp.CompletedAbyssMissions, days, weekdayFrom, weekdayTo, fullWeeks),
                             elysianRealm: GetElysianRealmTotal(weeklyResets, cp.ElysianRealmDiff),
                             maintenance: GetMaintenancesTotal(maintenancesCount),
-                            extras: GetExtrasTotal(cp.FilledSurvey, cp.UsedStreamCodes, fullVersions, daysLastVersion),
+                            extras: GetExtrasTotal(versionCurrent, versionLast, fullVersions, cp.From, cp.To),
                             monthlyCard: GetMonthlyCardTotal(days, cp.MonthlyCardDays, cp.MonthlyCardDaysBonus),
                             arena: GetArenaTotal(cp.Level, days, fullWeeks, weekdayFrom, weekdayTo),
                             bp: GetBattlePassTotal(fullVersions, cp.BpLevel, cp.BpThisVersion, cp.BpFutureVersions, daysLeftThisVersion, daysLastVersion),
@@ -61,9 +61,7 @@ namespace HonkaiHub.Services
                             );
 
             int sum = breakdown.Sum();
-            int bonusFocused = fullVersions > 0 ? fullVersions : 0;
-            int requiredLevelCard = cp.BpThisVersion == Battlepass.KnightPaladin ? 16 : 6;
-            bonusFocused += (_co.BpAverageExpDaily * daysLastVersion / _co.BpExpPerLevel) >= requiredLevelCard ? 1 : 0;
+            int bonusFocused = GetBattlePassCards(fullVersions, cp.BpThisVersion, cp.BpLevel, daysThisVersion, daysLastVersion);
 
             var total = new CalculatorRewardTotal(
                 grandTotal: sum,
@@ -111,15 +109,28 @@ namespace HonkaiHub.Services
 
         private int GetMaintenancesTotal(int maintenancesCount) => maintenancesCount * _co.MaintenanceReward;
 
-        private int GetExtrasTotal(bool filledSurvey, bool claimedCodes, int fullVersions, int daysLastVersion) 
+        private int GetExtrasTotal(GameVersion currentVersion, GameVersion lastVersion, int fullVersions, DateTime from, DateTime to) 
         {
-            int surveys = fullVersions > -1 ? fullVersions + (!filledSurvey ? 1 : 0) : 0;
-            int streamCodes = fullVersions > -1 ? fullVersions + (!claimedCodes ? 1 : 0) : 0;
+            int surveys = Math.Max(fullVersions, 0);
+            int streamCodes = Math.Max(fullVersions, 0);
 
-            if (fullVersions > 0 && _gvs.DaysInVersion - daysLastVersion <= 5)
+            // honkai lounge and surveys usually happen 6 days before a version ends
+
+            var currVersionDate = currentVersion.End.AddDays(-6);
+            if (to >= currVersionDate && from < currVersionDate)
             {
                 surveys++;
                 streamCodes++;
+            }
+
+            if (fullVersions > -1)
+            {
+                var lastVersionDate = lastVersion.End.AddDays(-6);
+                if (to >= lastVersionDate)
+                {
+                    surveys++;
+                    streamCodes++;
+                }
             }    
 
             return surveys * _co.SurveyReward + streamCodes * _co.HyperionLoungeReward;
@@ -164,7 +175,7 @@ namespace HonkaiHub.Services
             int monthlyResets = (to.Year - from.Year) * 12 + to.Month - from.Month;
 
             int i;
-            for (i = 1; i < monthlyResets - 1; i++) 
+            for (i = 1; i < monthlyResets; i++) 
             {
                 var dt = new DateTime(from.Year, from.Month, 1);
                 dt = dt.AddMonths(i);
@@ -178,7 +189,7 @@ namespace HonkaiHub.Services
             return sum;
         }
 
-        private int GetAbyssTotal(string abyssTier, int days, int weekdayFrom, int weekdayTo, int fullWeeks)
+        private int GetAbyssTotal(string abyssTier, bool completedAbyssMissions, int days, int weekdayFrom, int weekdayTo, int fullWeeks)
         {
             if (string.IsNullOrEmpty(abyssTier))
                 return 0;
@@ -196,7 +207,23 @@ namespace HonkaiHub.Services
             if (fullWeeks > 0)
                 periods += fullWeeks * 2;
 
-            return periods * _co.AbyssRewards[abyssTier];
+            int reward = periods * _co.AbyssRewards[abyssTier];
+            if (completedAbyssMissions && periods > 0)
+                reward -= 100;
+
+            return reward;
+        }
+
+        private int GetBattlePassCards(int fullVersions, Battlepass bpThisVersion, int bpLevel, int daysThisVersion, int daysLastVersion)
+        {
+            int bonusFocused = fullVersions > 0 ? fullVersions : 0;
+            int requiredLevelCard = bpThisVersion == Battlepass.KnightPaladin ? 6 : 16;
+            if (bpLevel < requiredLevelCard)
+                bonusFocused += (_co.BpAverageExpDaily * daysThisVersion / _co.BpExpPerLevel) >= requiredLevelCard ? 1 : 0;
+            if (fullVersions > -1)
+                bonusFocused += (_co.BpAverageExpDaily * daysLastVersion / _co.BpExpPerLevel) >= requiredLevelCard ? 1 : 0;
+
+            return bonusFocused;
         }
 
         private int GetBattlePassTotal(int fullVersions, int currentBpLevel, Battlepass bpThisVersion, Battlepass bpNextVersion, int daysCurrentVersion, int daysLastVersion)
