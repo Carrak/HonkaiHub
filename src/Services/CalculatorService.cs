@@ -19,14 +19,15 @@ namespace HonkaiHub.Services
 
         public CalculatorResponse Calculate(CalculatorParams cp)
         {
-            var versionFrom = _gvs.GetCurrentVersionStart(cp.From);
+            var versionCurrent = _gvs.GetVersion(cp.From);
+            var versionLast = _gvs.GetVersion(cp.To);
 
             int days = (cp.To - cp.From).Days;
             int weekdayFrom = DayOfWeek(cp.From.DayOfWeek);
             int weekdayTo = DayOfWeek(cp.To.DayOfWeek);
-            int daysRelativeToUpdate = (cp.To - versionFrom).Days;
+            int daysRelativeToUpdate = (cp.To - versionCurrent.Start).Days;
 
-            int daysThisVersion = (cp.From - versionFrom).Days;
+            int daysThisVersion = (cp.From - versionCurrent.Start).Days;
             int daysLeftThisVersion = Math.Min(days, _gvs.DaysInVersion - daysThisVersion);
             int daysLastVersion = daysRelativeToUpdate % _gvs.DaysInVersion;
 
@@ -37,7 +38,7 @@ namespace HonkaiHub.Services
             int fullWeeks = weeklyResets - 1;
 
             // same logic explained above applies for fullVersions
-            int maintenancesCount = _gvs.GetMaintenancesCount(versionFrom, cp.To);
+            int maintenancesCount = _gvs.GetMaintenancesCount(versionCurrent, cp.To);
             int fullVersions = maintenancesCount - 1;
 
             var customsDict = GetCustomRewards(cp.CustomRewards);

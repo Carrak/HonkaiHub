@@ -15,19 +15,19 @@ namespace HonkaiHub.Services
             options.OnChange(newOptions => _vo = newOptions);
         }
 
-        private int GetCurrentVersionIndex(DateTime now)
+        private GameVersion? GetCurrentVersionFromKnown(DateTime now)
         {
             var vers = _vo.KnownVersionStarts;
 
             for (int i = 1; i < vers.Count; i++)
                 if (now >= vers[i - 1] && now < vers[i])
-                    return i - 1;
+                    return new GameVersion(vers[i-1], vers[i]);
 
-            return -1;
+            return null;
         }
 
         // handles start values outside of known ones
-        private DateTime GetUnknownVersionStart(DateTime from)
+        private GameVersion GetUnknownVersionStart(DateTime from)
         {
             var vers = _vo.KnownVersionStarts;
 
@@ -36,26 +36,26 @@ namespace HonkaiHub.Services
             {
                 var end = lastVer.AddDays(_vo.DaysInVersion);
                 if (from <= end)
-                    return lastVer;
+                    return new GameVersion(lastVer, end);
 
                 lastVer = end;
             }
         }
 
-        public DateTime GetCurrentVersionStart(DateTime from)
+        public GameVersion GetVersion(DateTime from)
         {
-            var index = GetCurrentVersionIndex(from);
-            if (index != -1)
-                return _vo.KnownVersionStarts[index];
+            var ver = GetCurrentVersionFromKnown(from);
+            if (ver != null)
+                return ver;
 
             return GetUnknownVersionStart(from);
         }
 
-        public int GetMaintenancesCount(DateTime currentVersionStart, DateTime to)
+        public int GetMaintenancesCount(GameVersion currentVersion, DateTime to)
         {
             int index = -1;
             for(int i = 0; i < _vo.KnownVersionStarts.Count; i++)
-                if (currentVersionStart == _vo.KnownVersionStarts[i])
+                if (currentVersion.Start == _vo.KnownVersionStarts[i])
                 {
                     index = i;
                     break;
@@ -80,7 +80,7 @@ namespace HonkaiHub.Services
             }
             else
             {
-                return ((to - currentVersionStart).Days - 1) / _vo.DaysInVersion;
+                return ((to - currentVersion.Start).Days - 1) / _vo.DaysInVersion;
             }
 
             return count + ((to - current).Days - 1) / _vo.DaysInVersion;
