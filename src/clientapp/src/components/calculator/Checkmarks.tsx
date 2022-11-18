@@ -6,6 +6,7 @@ interface ICheckmarksProps {
 }
 
 interface ICheckmarksState {
+    completedAbyssMissions: boolean
 }
 
 class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
@@ -13,6 +14,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
         super(props)
 
         this.state = {
+            completedAbyssMissions: false,
         }
 
         let inputs = localStorage.getItem("checkmarks")
@@ -21,6 +23,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
             this.props.updateCheckmarks(this.state, false)
         }
 
+        this.onChangeCompletedAbyssMissions = this.onChangeCompletedAbyssMissions.bind(this)
     }
 
     update() {
@@ -28,6 +31,8 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
         localStorage.setItem("checkmarks", JSON.stringify(this.state))
     }
 
+    onChangeCompletedAbyssMissions(e: SyntheticEvent<Element, Event>, checked: boolean) {
+        this.setState(({ completedAbyssMissions: checked }), () => this.update())
     }
 
     render() {
@@ -35,6 +40,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
             <Grid container direction="column" rowSpacing={1}>
                 <Grid item>
                     <FormGroup sx={{ color: "white" }} >
+                        <FormControlLabel onChange={this.onChangeCompletedAbyssMissions} value={this.state.completedAbyssMissions} control={<Checkbox />} label="Completed abyss stages" />
                     </FormGroup>
                 </Grid>
             </Grid>
