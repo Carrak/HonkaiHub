@@ -41,6 +41,20 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         localStorage.setItem("dates", JSON.stringify(this.state))
     }
 
+    updateFrom(newValue: Moment | null) {
+        this.setState(prevState => ({
+            valueFrom: newValue,
+            valueTo: newValue?.isAfter(prevState.valueTo) ? null : prevState.valueTo
+        }), () => this.update())
+    }
+
+    updateTo(newValue: Moment | null) {
+        this.setState(prevState => ({
+            valueTo: newValue,
+            valueFrom: newValue?.isBefore(prevState.valueFrom) ? null : prevState.valueFrom
+        }), () => this.update())
+    }
+
     render() {
         const tooltip = "Fields marked with * are required. Input the period for your calculations."
 
@@ -56,9 +70,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueFrom}
                             label="Date from"
-                            onChange={newValue => {
-                                this.setState({ valueFrom: newValue?.utc().startOf('day') ?? null }, () => this.update())
-                            }}
+                            onChange={newValue => this.updateFrom(newValue)}
                             renderInput={(params) => <StyledTextField required helperText={(days ?? "?") + " days"} {...params} />}
                         />
                     </LocalizationProvider>
@@ -68,9 +80,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueTo}
-                            onChange={(newValue) => {
-                                this.setState({ valueTo: newValue?.utc().startOf('day') ?? null }, () => this.update())
-                            }}
+                            onChange={newValue => this.updateTo(newValue)}
                             label="Date to"
                             renderInput={(params) => <StyledTextField required {...params} />}
                         />

@@ -183,26 +183,25 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         }));
 
         let raw = JSON.stringify({
-            From:                  this.values.dates.valueFrom,
-            To:                    this.values.dates.valueTo,
-            BalanceCrystals:       this.values.balance?.crystals ?? 0,
-            BalanceExpansionCards: this.values.balance?.expansion ?? 0,
-            BalanceFocusedCards:   this.values.balance?.focused ?? 0,
-            BalanceElfCards:       this.values.balance?.elf ?? 0,
-            BalanceSpCards:        this.values.balance?.sp ?? 0,
-            BalanceDormCards:      this.values.balance?.dorm ?? 0,
-            Level:                 this.values.settings.level,
-            AbyssTier:             this.values.settings.abyss,
-            ElysianRealmDiff:      this.values.settings.realm,
-            SignInDays:            this.values.settings.signIn,
-            BpLevel:               this.values.settings.bpLevel,
-            BpThisVersion:         this.values.settings.bpThisVersion,
-            BpFutureVersions:      this.values.settings.bpFutureVersions,
-            MonthlyCardDays:       this.values.settings.monthlyDays ?? 0,
-            MonthlyCardDaysBonus:  this.values.settings.monthlyDaysBonus ?? 0,
-            UsedStreamCodes:       this.values.checkmarks?.usedCodes ?? false,
-            FilledSurvey:          this.values.checkmarks?.filledSurvey ?? false,
-            CustomRewards:         custom ?? []
+            From:                   this.values.dates.valueFrom.format('YYYY-MM-DDTHH:mm:ss'),
+            To:                     this.values.dates.valueTo.format('YYYY-MM-DDTHH:mm:ss'),
+            BalanceCrystals:        this.values.balance?.crystals ?? 0,
+            BalanceExpansionCards:  this.values.balance?.expansion ?? 0,
+            BalanceFocusedCards:    this.values.balance?.focused ?? 0,
+            BalanceElfCards:        this.values.balance?.elf ?? 0,
+            BalanceSpCards:         this.values.balance?.sp ?? 0,
+            BalanceDormCards:       this.values.balance?.dorm ?? 0,
+            Level:                  this.values.settings.level,
+            AbyssTier:              this.values.settings.abyss,
+            ElysianRealmDiff:       this.values.settings.realm,
+            SignInDays:             this.values.settings.signIn,
+            BpLevel:                this.values.settings.bpLevel,
+            BpThisVersion:          this.values.settings.bpThisVersion,
+            BpFutureVersions:       this.values.settings.bpFutureVersions,
+            MonthlyCardDays:        this.values.settings.monthlyDays ?? 0,
+            MonthlyCardDaysBonus:   this.values.settings.monthlyDaysBonus ?? 0,
+            CompletedAbyssMissions: this.values.checkmarks?.completedAbyssMissions ?? false,
+            CustomRewards:          custom ?? []
         })
 
         var options = {
