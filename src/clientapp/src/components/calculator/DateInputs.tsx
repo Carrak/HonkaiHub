@@ -1,19 +1,19 @@
 import { Grid } from "@mui/material";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { Dayjs } from 'dayjs';
-import dayjs from 'dayjs';
 import { Component, Fragment } from "react";
 import { StyledTextField } from "./textfields/StyledTextField";
 import CustomTooltip from "../CustomTooltip";
+import { Moment } from "moment";
+import moment from "moment";
 
 interface IDateInputsProps {
     updateDates: (state: IDateInputsState, update: boolean) => any
 }
 
 interface IDateInputsState {
-    valueFrom: Dayjs | null;
-    valueTo: Dayjs | null;
+    valueFrom: Moment | null;
+    valueTo: Moment | null;
 }
 
 class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
@@ -21,7 +21,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         super(props);
 
         this.state = {
-            valueFrom: dayjs().startOf("day"),
+            valueFrom: moment(),
             valueTo: null,
         }
 
@@ -29,8 +29,8 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         if (inputs) {
             let stateJson = JSON.parse(inputs)
             this.state = {
-                valueFrom: dayjs(stateJson.valueFrom).utc().startOf('day'),
-                valueTo: dayjs(stateJson.valueTo).utc().startOf('day'),
+                valueFrom: moment(stateJson.valueFrom),
+                valueTo: moment(stateJson.valueTo),
             }
             this.props.updateDates(this.state, false)
         }
@@ -51,7 +51,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         return <Fragment>
             <Grid container direction="row" columnSpacing={0.7}>
                 <Grid item xs={5.3} md={5.5}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <LocalizationProvider dateAdapter={AdapterMoment} >
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueFrom}
@@ -64,7 +64,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
                     </LocalizationProvider>
                 </Grid>
                 <Grid item xs={5.3} md={5.5}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <LocalizationProvider dateAdapter={AdapterMoment}>
                         <DatePicker
                             inputFormat="DD.MM.YYYY"
                             value={this.state.valueTo}
