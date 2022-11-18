@@ -6,8 +6,6 @@ interface ICheckmarksProps {
 }
 
 interface ICheckmarksState {
-    filledSurvey: boolean,
-    usedCodes: boolean,
 }
 
 class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
@@ -15,8 +13,6 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
         super(props)
 
         this.state = {
-            filledSurvey: false,
-            usedCodes: false,
         }
 
         let inputs = localStorage.getItem("checkmarks")
@@ -25,8 +21,6 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
             this.props.updateCheckmarks(this.state, false)
         }
 
-        this.onChangeFilledSurvey = this.onChangeFilledSurvey.bind(this)
-        this.onChangeUsedCodes = this.onChangeUsedCodes.bind(this)
     }
 
     update() {
@@ -34,12 +28,6 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
         localStorage.setItem("checkmarks", JSON.stringify(this.state))
     }
 
-    onChangeFilledSurvey(e: SyntheticEvent<Element, Event>, checked: boolean) {
-        this.setState(({ filledSurvey: checked }), () => this.update())
-    }
-
-    onChangeUsedCodes(e: SyntheticEvent<Element, Event>, checked: boolean) {
-        this.setState(({ usedCodes: checked }), () => this.update())
     }
 
     render() {
@@ -47,8 +35,6 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
             <Grid container direction="column" rowSpacing={1}>
                 <Grid item>
                     <FormGroup sx={{ color: "white" }} >
-                        <FormControlLabel onChange={this.onChangeFilledSurvey} value={this.state.filledSurvey} control={<Checkbox />} label="Filled the survey" />
-                        <FormControlLabel onChange={this.onChangeUsedCodes} value={this.state.usedCodes} control={<Checkbox />} label="Used stream codes" />
                     </FormGroup>
                 </Grid>
             </Grid>
