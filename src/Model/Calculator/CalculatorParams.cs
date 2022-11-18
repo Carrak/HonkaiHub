@@ -23,9 +23,7 @@
         public int MonthlyCardDays { get; init; }
         public int MonthlyCardDaysBonus { get; init; }
 
-        public bool UsedStreamCodes { get; init; }
-        public bool FilledSurvey { get; init; }
-        public bool BoughtBpFocusedCard { get; init; }
+        public bool CompletedAbyssMissions { get; init; }
 
         public IReadOnlyList<CustomReward> CustomRewards { get; init; }
     }
