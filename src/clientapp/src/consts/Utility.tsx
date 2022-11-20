@@ -2,8 +2,10 @@ export const getNum = (prev: number | null, input: string, min?: number, max?: n
     if (input === "" || input === "-")
         return null;
 
-    if (input.includes("-", 1) && prev) 
-            return prev * -1;
+    if (input.includes("-", 1) && prev) {
+        const newVal = prev * -1;
+        return typeof min !== 'undefined' && newVal < min ? prev : newVal;
+    }
 
     let num: number = parseInt(input);
     if (isNaN(num)) {
