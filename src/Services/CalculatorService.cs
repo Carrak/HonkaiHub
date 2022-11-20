@@ -25,11 +25,10 @@ namespace HonkaiHub.Services
             int days = (cp.To - cp.From).Days;
             int weekdayFrom = DayOfWeek(cp.From.DayOfWeek);
             int weekdayTo = DayOfWeek(cp.To.DayOfWeek);
-            int daysRelativeToUpdate = (cp.To - versionCurrent.Start).Days;
 
             int daysThisVersion = (cp.From - versionCurrent.Start).Days;
-            int daysLeftThisVersion = Math.Min(days, _gvs.DaysInVersion - daysThisVersion);
-            int daysLastVersion = daysRelativeToUpdate % _gvs.DaysInVersion;
+            int daysLeftThisVersion = Math.Min(days, (versionCurrent.End - cp.From).Days);
+            int daysLastVersion = (cp.To - versionLast.Start).Days;
 
             // value for fullWeeks is -1 if "From" and "To" dates are on the same week,
             // 0 if they're on consequent weeks,
