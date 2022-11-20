@@ -239,7 +239,7 @@ namespace HonkaiHub.Services
             int knightLastVersion = 0;
             if (fullVersions > -1)
             {
-                int levelLastVersion = daysLastVersion * _co.BpAverageExpDaily;
+                int levelLastVersion = daysLastVersion * _co.BpAverageExpDaily / _co.BpExpPerLevel;
                 vanguardLastVersion = _co.VanguardRewards.GetReward(levelLastVersion);
                 if (bpNextVersion == Battlepass.KnightPaladin)
                     knightLastVersion = _co.KnightRewards.GetReward(levelLastVersion);
