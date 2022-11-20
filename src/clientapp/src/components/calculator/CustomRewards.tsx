@@ -70,7 +70,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
         const newRewards: ICustomReward[] = this.state.rewards.map((rwrd) =>
         {
             if (rwrd.id === id)
-                rwrd.amount = getNum(rwrd.amount, e.target.value, 0);
+                rwrd.amount = getNum(rwrd.amount, e.target.value);
             return rwrd;
         })
         this.setState({ rewards: newRewards }, () => this.update());
