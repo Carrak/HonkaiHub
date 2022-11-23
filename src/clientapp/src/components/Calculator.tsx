@@ -4,7 +4,7 @@ import Balance, { IBalanceState } from './calculator/Balance';
 import DateInputs, { IDateInputsState } from './calculator/DateInputs';
 import Settings, { ISettingsState } from './calculator/Settings';
 import RewardTotal from "./calculator/RewardTotal";
-import CustomRewards, { ICustomRewardsState } from "./calculator/CustomRewards";
+import CustomRewards, { ICustomReward, ICustomRewardsState } from "./calculator/CustomRewards";
 import RewardBreakdown from "./calculator/RewardBreakdown";
 import { ICheckmarksState } from "./calculator/Checkmarks";
 
@@ -18,7 +18,7 @@ interface ICalculatorState {
 }
 
 interface ICalculatorValues {
-    customRewards: ICustomRewardsState | null
+    customRewards: ICustomReward[] | null
     balance: IBalanceState | null
     dates: IDateInputsState | null
     settings: ISettingsState | null
@@ -136,8 +136,8 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
         }
     }
 
-    updateCustomRewards(state: ICustomRewardsState, update: boolean) {
-        this.values.customRewards = state
+    updateCustomRewards(newRewards: ICustomReward[], update: boolean) {
+        this.values.customRewards = newRewards
         if (update) this.getCalculatorResponse()
     }
 
@@ -167,20 +167,19 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             this.values.settings?.level == null ||
             (this.values.settings.level >= 70 && this.values.settings?.abyss == null) ||
             this.values.settings.realm == null ||
-            this.values.settings.signIn == null ||
             this.values.settings.bpLevel == null ||
             this.values.settings.bpThisVersion == null ||
             this.values.settings.bpFutureVersions == null
             )
             return;
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+        var myHeaders = new Headers()
+        myHeaders.append("Content-Type", "application/json")
 
-        var custom = this.values.customRewards?.rewards.filter(x => x.currency != null && x.amount != null).map(rwrd => ({
+        var custom = this.values.customRewards?.map(rwrd => ({
             Amount: rwrd.amount,
             Currency: rwrd.currency
-        }));
+        }))
 
         let raw = JSON.stringify({
             From:                   this.values.dates.valueFrom.format('YYYY-MM-DDTHH:mm:ss'),
@@ -208,7 +207,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             method: 'POST',
             headers: myHeaders,
             body: raw
-        };
+        }
 
         console.log(options.body)
 
