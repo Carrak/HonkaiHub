@@ -93,12 +93,13 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
     }
 
     render() {
-        const tooltip = <p>
+        const tooltip = <span>
             Fields marked with * are required. For calculations abyss is only available for level 70 or higher. <br />
-            - Hints - <br />
-            Sign-in days claimed - how many times you logged in this month <br />
-            Monthly card (claimed to 15) - how many days you claimed for the 500 crystal bonus, e.g. if the page says "4/15", you specify this as 4
-        </p>
+            -- Hints -- <br />
+            1. Abyss tier<br />Choose the bracket that you can consistently retent in. <br />
+            2. Sign-in days claimed<br />How many times you logged into the game this month. Defaults to current day of the month if not specified. <br />
+            3. Monthly card claimed to 15<br />How many days you claimed for the 500 crystal bonus, e.g. if the page says '4/15', you specify this as 4.
+        </span>
 
         let abyssSelect;
         if (this.state.level) {
