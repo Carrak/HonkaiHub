@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, InputAdornment } from "@mui/material";
 import { Component, Fragment } from "react";
 import { getNum } from "../../consts/Utility";
 import Checkmarks, { ICheckmarksState } from "./Checkmarks";
@@ -36,7 +36,6 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
         let inputs = localStorage.getItem("balance")
         if (inputs) {
             this.state = JSON.parse(inputs);
-
             this.props.updateBalance(this.state, false)
         }
         this.onChangeCrystals = this.onChangeCrystals.bind(this)
@@ -68,12 +67,12 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
         this.setState(prevState => ({ elf: getNum(prevState.elf, e.target.value, 0) }), () => this.update())
     }
 
-    onChangeSP(e: React.ChangeEvent<HTMLInputElement>) { 
+    onChangeSP(e: React.ChangeEvent<HTMLInputElement>) {
         this.setState(prevState => ({ sp: getNum(prevState.sp, e.target.value, 0) }), () => this.update())
     }
 
     onChangeDorm(e: React.ChangeEvent<HTMLInputElement>) {
-        this.setState(prevState => ({ dorm: getNum(prevState.dorm, e.target.value, 0) }), () =>this.update())
+        this.setState(prevState => ({ dorm: getNum(prevState.dorm, e.target.value, 0) }), () => this.update())
     }
 
     render() {
@@ -86,47 +85,69 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="Crystals.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="crystals" label="Crystals"
-                            value={this.state.crystals ?? ""}
-                            onChange={this.onChangeCrystals} />
-                    </Box>
+                    <StyledTextField id="crystals" label="Crystals"
+                        value={this.state.crystals ?? ""}
+                        onChange={this.onChangeCrystals}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="Crystals.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="Expansion.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="expansion" label="Expansion cards"
-                            value={this.state.expansion ?? ""} onChange={this.onChangeExpansion} />
-                    </Box>
+                    <StyledTextField id="focused" label="Focused cards"
+                        value={this.state.focused ?? ""}
+                        onChange={this.onChangeFocused}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="Focused.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="Focused.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="focused" label="Focused cards"
-                            value={this.state.focused ?? ""} onChange={this.onChangeFocused} />
-                    </Box>
+                    <StyledTextField id="expansion" label="Expansion cards"
+                        value={this.state.expansion ?? ""}
+                        onChange={this.onChangeExpansion}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="Expansion.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="ELF.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="elf" label="Elf cards"
-                            value={this.state.elf ?? ""} onChange={this.onChangeElf} />
-                    </Box>
+                    <StyledTextField id="elf" label="Elf cards"
+                        value={this.state.elf ?? ""}
+                        onChange={this.onChangeElf}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="ELF.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="SP.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="sp" label="SP cards"
-                            value={this.state.sp ?? ""} onChange={this.onChangeSP} />
-                    </Box>
+                    <StyledTextField id="sp" label="SP cards"
+                        value={this.state.sp ?? ""} onChange={this.onChangeSP}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="SP.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item>
-                    <Box className="balance-box">
-                        <img src="Dorm.webp" className="currency-icon" alt="" />
-                        <StyledTextField id="dorm" label="Dorm cards"
-                            value={this.state.dorm ?? ""} onChange={this.onChangeDorm} />
-                    </Box>
+                    <StyledTextField id="dorm" label="Dorm cards"
+                        value={this.state.dorm ?? ""}
+                        onChange={this.onChangeDorm}
+                        InputProps={{
+                            endAdornment: <InputAdornment position="end">
+                                <img src="Dorm.webp" className="currency-icon" alt="" />
+                            </InputAdornment>
+                        }}
+                    />
                 </Grid>
                 <Grid item mt={1} ml={0.8}>
                     <Checkmarks updateCheckmarks={this.props.updateCheckmarks}/>
