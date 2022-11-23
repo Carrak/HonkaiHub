@@ -40,7 +40,7 @@ class Checkmarks extends Component<ICheckmarksProps, ICheckmarksState> {
             <Grid container direction="column" rowSpacing={1}>
                 <Grid item>
                     <FormGroup sx={{ color: "white" }} >
-                        <FormControlLabel onChange={this.onChangeCompletedAbyssMissions} value={this.state.completedAbyssMissions} control={<Checkbox />} label="Completed abyss stages" />
+                        <FormControlLabel onChange={this.onChangeCompletedAbyssMissions} control={<Checkbox checked={this.state.completedAbyssMissions} />} label="Completed abyss stages" />
                     </FormGroup>
                 </Grid>
             </Grid>
