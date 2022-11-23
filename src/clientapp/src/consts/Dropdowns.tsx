@@ -11,11 +11,11 @@ export function select(arr: any[]): JSX.Element[] {
 
 export const exalted: DropdownOption[] = [
     {
-        label: "Nirvana | Myriad 1-50",
+        label: "Myriad T50",
         value: "ex_nirvana_myriad_1-50"
     },
     {
-        label: "Nirvana | Myriad 51-100",
+        label: "Myriad T100",
         value: "ex_nirvana_myriad_51-100"
     },
     {
@@ -111,12 +111,12 @@ export const currencies: DropdownOption[] = [
         value: 0
     },
     {
-        label: "Expansion cards",
-        value: 1
-    },
-    {
         label: "Focused cards",
         value: 2
+    },
+    {
+        label: "Expansion cards",
+        value: 1
     },
     {
         label: "ELF cards",
