@@ -149,8 +149,8 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
                         }}
                     />
                 </Grid>
-                <Grid item mt={1} ml={0.8}>
-                    <Checkmarks updateCheckmarks={this.props.updateCheckmarks}/>
+                <Grid item>
+                    <Checkmarks updateCheckmarks={this.props.updateCheckmarks} />
                 </Grid>
             </Grid>
         </Fragment>
