@@ -200,7 +200,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
                 <Grid item>
                     <StyledTextField
                         id="monthly-15-input"
-                        label="Monthly card (claimed to 15)"
+                        label="Monthly card claimed to 15"
                         value={this.state.monthlyDaysBonus ?? ""}
                         onChange={this.onChangeMonthlyDaysBonus}
                     />
