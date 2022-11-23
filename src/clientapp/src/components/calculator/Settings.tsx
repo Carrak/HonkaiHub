@@ -175,19 +175,18 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
                 <Grid item>
                     <StyledTextField
                         required
-                        id="sign-in-input"
-                        label="Sign-in days claimed"
-                        value={this.state.signIn ?? ""}
-                        onChange={this.onChangeSignIn}
-                    />
-                </Grid>
-                <Grid item>
-                    <StyledTextField
-                        required
                         id="bp-level-input"
                         label="BP level"
                         value={this.state.bpLevel ?? ""}
                         onChange={this.onChangeBpLevel}
+                    />
+                </Grid>
+                <Grid item>
+                    <StyledTextField
+                        id="sign-in-input"
+                        label="Sign-in days claimed"
+                        value={this.state.signIn ?? ""}
+                        onChange={this.onChangeSignIn}
                     />
                 </Grid>
                 <Grid item>
