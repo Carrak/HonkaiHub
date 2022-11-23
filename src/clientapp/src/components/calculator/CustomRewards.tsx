@@ -77,7 +77,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                 const old = this.isRewardComplete(rwrd)
                 rwrd = set(rwrd, e.target.value)
                 const curr = this.isRewardComplete(rwrd)
-                flag = old != curr
+                flag = old != curr || curr
             }
             return rwrd;
         })
