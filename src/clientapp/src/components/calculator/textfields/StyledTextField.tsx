@@ -9,12 +9,3 @@ export const StyledTextField = styled((props: TextFieldProps) => (
     />
 ))(() => ({}));
 
-export const StyledReadonlyTextField = styled((props: TextFieldProps) => (
-    <TextField
-        fullWidth
-        variant="outlined"
-        size="small"
-        {...props}
-    />
-))(() => ({}));
-
