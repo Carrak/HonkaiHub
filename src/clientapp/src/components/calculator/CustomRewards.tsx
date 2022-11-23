@@ -7,7 +7,7 @@ import { getNum } from "../../consts/Utility";
 import CustomTooltip from "../CustomTooltip";
 
 interface ICustomRewardsProps {
-    updateCustomRewards: (state: ICustomRewardsState, update: boolean) => any
+    updateCustomRewards: (state: ICustomReward[], update: boolean) => any
 }
 
 interface ICustomReward {
@@ -36,7 +36,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
         let inputs = localStorage.getItem("customRewards")
         if (inputs) {
             this.state = JSON.parse(inputs);
-            this.props.updateCustomRewards(this.state, false)
+            this.props.updateCustomRewards(this.state.rewards.filter(this.isRewardComplete), false)
         }
 
         this.getAndIncreaseId = this.getAndIncreaseId.bind(this);
@@ -46,11 +46,13 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
         this.onChangeCurrency = this.onChangeCurrency.bind(this)
     }
 
-
-    update() {
-        this.props.updateCustomRewards(this.state, true)
+    update(updateCalc: boolean) {
+        if (updateCalc)
+            this.props.updateCustomRewards(this.state.rewards.filter(this.isRewardComplete), true)
         localStorage.setItem("customRewards", JSON.stringify(this.state))
     }
+
+    isRewardComplete = (reward: ICustomReward): boolean => reward.currency != null && reward.amount != null
 
     getAndIncreaseId(): number {
         this.setState({ currentId: this.state.currentId + 1 });
@@ -59,39 +61,48 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
 
     onAddClick() {
         const newReward: ICustomReward = { id: this.getAndIncreaseId(), name: "", amount: null, currency: null }
-        this.setState({ rewards: [...this.state.rewards, newReward] }, () => this.update())
+        this.setState({ rewards: [...this.state.rewards, newReward] })
     }
 
     onRemove(id: number) {
-        this.setState(prevState => ({ rewards: prevState.rewards.filter(item => item.id !== id) }), () => this.update())
+        this.setState(prevState => ({ rewards: prevState.rewards.filter(item => item.id !== id) }), () => this.update(true))
+    }
+
+    onChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        id: number,
+        set: (rwrd: ICustomReward, input: string) => ICustomReward) {
+        let flag = false
+        const newRewards: ICustomReward[] = this.state.rewards.map((rwrd) => {
+            if (rwrd.id === id) {
+                const old = this.isRewardComplete(rwrd)
+                rwrd = set(rwrd, e.target.value)
+                const curr = this.isRewardComplete(rwrd)
+                flag = old != curr
+            }
+            return rwrd;
+        })
+        this.setState({ rewards: newRewards }, () => this.update(flag));
     }
 
     onChangeAmount(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: number) {
-        const newRewards: ICustomReward[] = this.state.rewards.map((rwrd) =>
-        {
-            if (rwrd.id === id)
-                rwrd.amount = getNum(rwrd.amount, e.target.value);
-            return rwrd;
+        this.onChange(e, id, (rwrd: ICustomReward, input: string) => {
+            rwrd.amount = getNum(rwrd.amount, e.target.value)
+            return rwrd
         })
-        this.setState({ rewards: newRewards }, () => this.update());
     }
 
     onChangeCurrency(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: number) {
-        const newRewards: ICustomReward[] = this.state.rewards.map((rwrd) => {
-            if (rwrd.id === id)
-                rwrd.currency = e.target.value
-            return rwrd;
+        this.onChange(e, id, (rwrd: ICustomReward, input: string) => {
+            rwrd.currency = input
+            return rwrd
         })
-        this.setState({ rewards: newRewards }, () => this.update());
     }
 
     onChangeName(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: number) {
-        const newRewards: ICustomReward[] = this.state.rewards.map((rwrd) => {
-            if (rwrd.id === id)
-                rwrd.name = e.target.value
-            return rwrd;
+        this.onChange(e, id, (rwrd: ICustomReward, input: string) => {
+            rwrd.name = input
+            return rwrd
         })
-        this.setState({ rewards: newRewards }, () => this.update());
     }
 
     render() { 
@@ -106,14 +117,14 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
                     <Grid container direction="row" columnSpacing={0.5}>
-                        <Grid item xs={3.2} md={3.3}>
+                        <Grid item xs={3.2}>
                             <StyledTextField
                                 label="Name"
                                 value={x.name}
                                 onChange={(e) => this.onChangeName(e, x.id)}
                                 id={"namecr" + x.id} />
                         </Grid>
-                        <Grid item xs={3.2} md={3.3}>
+                        <Grid item xs={2.5}>
                             <StyledTextField
                                 label="Amount"
                                 required
@@ -121,7 +132,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 onChange={(e) => this.onChangeAmount(e, x.id)}
                                 id={"acr" + x.id} />
                         </Grid>
-                        <Grid item xs={4.2} md={4.4}>
+                        <Grid item xs={true}>
                             <StyledTextField
                                 label="Currency"
                                 required
@@ -132,8 +143,8 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
                                 {select(currencies)}
                             </StyledTextField>
                         </Grid>
-                        <Grid item xs={1.4} md={1} display="flex" justifyContent="flex-end">
-                            <IconButton edge="end" size="small" onClick={() => this.onRemove(x.id)}>
+                        <Grid item xs="auto">
+                            <IconButton size="small" onClick={() => this.onRemove(x.id)}>
                                 <Delete />
                             </IconButton>
                         </Grid>
