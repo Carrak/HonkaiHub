@@ -21,7 +21,7 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
         super(props);
 
         this.state = {
-            valueFrom: moment(),
+            valueFrom: moment().startOf("day"),
             valueTo: null,
         }
 
