@@ -64,16 +64,11 @@ namespace HonkaiHub.Services
 
             var total = new CalculatorRewardTotal(
                 grandTotal: sum,
-                expansion: sum / _co.ExpansionCardPrice + cp.BalanceExpansionCards + customsDict[Currency.Expansion],
-                expansionRemainder: sum % _co.ExpansionCardPrice,
-                focused: sum / _co.FocusedCardPrice + cp.BalanceFocusedCards + bonusFocused + customsDict[Currency.Focused],
-                focusedRemainder: sum % _co.FocusedCardPrice,
-                elf: sum / _co.ElfCardPrice + cp.BalanceElfCards + customsDict[Currency.Elf],
-                elfRemainder: sum % _co.ElfCardPrice,
-                sp: sum / _co.SpCardPrice + cp.BalanceSpCards + customsDict[Currency.Sp],
-                spRemainder: sum % _co.SpCardPrice,
-                dorm: sum / _co.DormCardPrice + cp.BalanceDormCards + customsDict[Currency.Dorm],
-                dormRemainder: sum % _co.DormCardPrice);
+                expansion: cp.BalanceExpansionCards + customsDict[Currency.Expansion],
+                focused: cp.BalanceFocusedCards + bonusFocused + customsDict[Currency.Focused],
+                elf: cp.BalanceElfCards + customsDict[Currency.Elf],
+                sp: cp.BalanceSpCards + customsDict[Currency.Sp],
+                dorm: cp.BalanceDormCards + customsDict[Currency.Dorm]);
 
             return new CalculatorResponse(breakdown, total);
         }
