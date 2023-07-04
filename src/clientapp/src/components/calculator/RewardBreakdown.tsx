@@ -16,7 +16,7 @@ class RewardBreakdown extends Component<IRewardBreakdownProps> {
         return <Fragment>
             <Grid container direction="row" rowSpacing={1.2} columnSpacing={1}>
                 <Grid item xs={12} className="top-note">
-                    Reward breakdown&nbsp;
+                    Crystal breakdown&nbsp;
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item xs={6}>
