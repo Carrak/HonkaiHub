@@ -131,3 +131,26 @@ export const currencies: DropdownOption[] = [
         value: 5
     },
 ]
+
+export const conversionCurrencies: DropdownOption[] = [
+    {
+        label: "Focused cards",
+        value: 1
+    },
+    {
+        label: "Expansion cards",
+        value: 2
+    },
+    {
+        label: "ELF cards",
+        value: 3
+    },
+    {
+        label: "SP cards",
+        value: 4
+    },
+    {
+        label: "Dorm cards",
+        value: 5
+    },
+]
