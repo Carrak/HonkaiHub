@@ -17,7 +17,7 @@ body {
 }
 
 .flex {
-    display:flex;
+    display: flex;
 }
 
 a {
@@ -48,6 +48,12 @@ a:hover {
 
 .reward-total-row {
     display: flex;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .currency-icon {
