@@ -4,7 +4,7 @@ import Balance, { IBalanceState } from './calculator/Balance';
 import DateInputs, { IDateInputsState } from './calculator/DateInputs';
 import Settings, { ISettingsState } from './calculator/Settings';
 import RewardTotal from "./calculator/RewardTotal";
-import CustomRewards, { ICustomReward, ICustomRewardsState } from "./calculator/CustomRewards";
+import CustomRewards, { ICustomReward } from "./calculator/CustomRewards";
 import RewardBreakdown from "./calculator/RewardBreakdown";
 import { ICheckmarksState } from "./calculator/Checkmarks";
 
@@ -28,15 +28,10 @@ interface ICalculatorValues {
 interface ICalculatorTotal {
     readonly grandTotal: number
     readonly expansion: number
-    readonly expansionRemainder: number
     readonly focused: number
-    readonly focusedRemainder: number
     readonly elf: number
-    readonly elfRemainder: number
     readonly sp: number
-    readonly spRemainder: number
     readonly dorm: number
-    readonly dormRemainder: number
 }
 
 interface ICalculatorBreakdown {
@@ -74,15 +69,10 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             total: {
                 grandTotal: 0,
                 expansion: 0,
-                expansionRemainder: 0,
                 focused: 0,
-                focusedRemainder: 0,
                 elf: 0,
-                elfRemainder: 0,
                 sp: 0,
-                spRemainder: 0,
                 dorm: 0,
-                dormRemainder: 0
             },
             breakdown: {
                 current: 0,
