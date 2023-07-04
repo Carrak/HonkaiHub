@@ -231,7 +231,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
                 <Grid item md={0.5} display="flex" justifyContent="center">
                     <Divider orientation="vertical" sx={{ backgroundColor: "#FFFFFF", borderRightWidth: '2px' }} />
                 </Grid>
-                <Grid item xs={12} md={2} className="output-grid">
+                <Grid item xs={12} md={2.2} className="output-grid">
                     <Grid container direction="column" rowSpacing={2}>
                         <Grid item paddingLeft={2} paddingRight={2}>
                             <RewardTotal totals={this.state.total} />
