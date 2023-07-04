@@ -21,11 +21,12 @@ body {
 }
 
 a {
-    color: #8BBAFF
+    color: #54fdff;
+    text-decoration: none;
 }
 
 a:hover {
-    color: #3A8AFF
+    color: #02aaff
 }
 
 .top-note {
