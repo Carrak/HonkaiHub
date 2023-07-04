@@ -10,7 +10,7 @@
         public int Abyss { get; }
         public int ElysianRealm { get; }
         public int Maintenance { get; }
-        public int Extras { get; }
+        public int StreamsSurveys { get; }
         public int MonthlyCard { get; }
         public int Bp { get; }
         public int Arena { get; }
@@ -18,7 +18,7 @@
         public int WeeklyShare { get; }
 
         public CalculatorRewardBreakdown(int current, int custom, int dailies, int signIn, int armada, 
-            int abyss, int elysianRealm, int maintenance, int extras, int monthlyCard, 
+            int abyss, int elysianRealm, int maintenance, int streamsSurveys, int monthlyCard, 
             int bp, int arena, int birthdays, int weeklyShare)
         {
             Current = current;
@@ -29,7 +29,7 @@
             Abyss = abyss;
             ElysianRealm = elysianRealm;
             Maintenance = maintenance;
-            Extras = extras;
+            StreamsSurveys = streamsSurveys;
             MonthlyCard = monthlyCard;
             Bp = bp;
             Arena = arena;
@@ -37,6 +37,6 @@
             WeeklyShare = weeklyShare;
         }
 
-        public int Sum() => Current + Custom + Dailies + SignIn + Armada + Abyss + ElysianRealm + Maintenance + Extras + MonthlyCard + Bp + Arena + Birthdays + WeeklyShare;
+        public int Sum() => Current + Custom + Dailies + SignIn + Armada + Abyss + ElysianRealm + Maintenance + StreamsSurveys + MonthlyCard + Bp + Arena + Birthdays + WeeklyShare;
     }
 }

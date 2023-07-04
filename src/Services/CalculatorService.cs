@@ -51,7 +51,7 @@ namespace HonkaiHub.Services
                             abyss: GetAbyssTotal(cp.AbyssTier, cp.CompletedAbyssMissions, days, weekdayFrom, weekdayTo, fullWeeks),
                             elysianRealm: GetElysianRealmTotal(weeklyResets, cp.ElysianRealmDiff),
                             maintenance: GetMaintenancesTotal(maintenancesCount),
-                            extras: GetExtrasTotal(versionCurrent, versionLast, fullVersions, cp.From, cp.To),
+                            streamsSurveys: GetExtrasTotal(versionCurrent, versionLast, fullVersions, cp.From, cp.To),
                             monthlyCard: GetMonthlyCardTotal(days, cp.MonthlyCardDays, cp.MonthlyCardDaysBonus),
                             arena: GetArenaTotal(cp.Level, days, fullWeeks, weekdayFrom, weekdayTo),
                             bp: GetBattlePassTotal(fullVersions, cp.BpLevel, cp.BpThisVersion, cp.BpFutureVersions, daysLeftThisVersion, daysLastVersion),
