@@ -173,8 +173,8 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
             )
             return;
 
-        var myHeaders = new Headers()
-        myHeaders.append("Content-Type", "application/json")
+        var headers = new Headers()
+        headers.append("Content-Type", "application/json")
 
         var custom = this.values.customRewards?.map(rwrd => ({
             Amount: rwrd.amount,
@@ -205,7 +205,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
         var options = {
             method: 'POST',
-            headers: myHeaders,
+            headers: headers,
             body: raw
         }
 
