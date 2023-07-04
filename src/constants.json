@@ -50,7 +50,7 @@
 				{ "condition": 30, "reward": 60 },
 				{ "condition": 35, "reward": 60 },
 				{ "condition": 40, "reward": 60	},
-				{	"condition": 55, "reward": 60 },
+				{ "condition": 55, "reward": 60 },
 				{ "condition": 65, "reward": 60 },
 				{ "condition": 70, "reward": 60 }
 			]
