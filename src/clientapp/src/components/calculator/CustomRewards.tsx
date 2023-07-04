@@ -14,7 +14,7 @@ interface ICustomReward {
     id: number;
     name: string
     amount: number | null;
-    currency: string | null;
+    currency: number | null;
 }
 
 interface ICustomRewardsState {
@@ -93,7 +93,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
 
     onChangeCurrency(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, id: number) {
         this.onChange(e, id, (rwrd: ICustomReward, input: string) => {
-            rwrd.currency = input
+            rwrd.currency = +input
             return rwrd
         })
     }
