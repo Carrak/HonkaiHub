@@ -70,7 +70,7 @@ namespace HonkaiHub.Services
                 for (; index < _vo.KnownVersionStarts.Count - 1; index++)
                 {
                     var end = _vo.KnownVersionStarts[index + 1];
-                    if (to > end)
+                    if (to >= end)
                         count++;
                     else
                         return count;
