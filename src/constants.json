@@ -78,13 +78,13 @@
 		"sign_in": {
 			"rewards": [
 				{ "condition": 1, "reward": 50 },
-				{ "condition": 6,	"reward": 50 },
+				{ "condition": 6, "reward": 50 },
 				{ "condition": 8, "reward": 50 },
 				{ "condition": 13, "reward": 50 },
-				{	"condition": 15, "reward": 50 },
+				{ "condition": 15, "reward": 50 },
 				{ "condition": 20, "reward": 50 },
 				{ "condition": 22, "reward": 50 },
-				{	"condition": 29, "reward": 50 }
+				{ "condition": 29, "reward": 50 }
 			]
 		}
 	}
