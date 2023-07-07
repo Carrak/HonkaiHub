@@ -83,12 +83,13 @@ namespace HonkaiHub.Services
 
         private Dictionary<Currency, int> GetCustomRewards(IEnumerable<CustomReward> customs)
         {
+            customs ??= Enumerable.Empty<CustomReward>();
+
             var customsDict = new Dictionary<Currency, int>();
             foreach (var cr in customs)
                 customsDict[cr.Currency] = customsDict.TryGetValue(cr.Currency, out int curr) ? curr + cr.Amount : cr.Amount;
 
-            var vals = Enum.GetValues<Currency>();
-            foreach (var val in vals)
+            foreach (var val in Enum.GetValues<Currency>())
                 if (!customsDict.ContainsKey(val))
                     customsDict[val] = 0;
 
