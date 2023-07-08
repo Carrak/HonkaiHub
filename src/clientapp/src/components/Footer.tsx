@@ -5,7 +5,7 @@ class Footer extends Component {
         return <Fragment>
             <footer className="footer">
                 <span>
-                    <b><a href="https://discord.gg/MFE76FqTyN" target="_blank">Join our Discord!</a></b> <br />
+                    <b><a href="https://discord.gg/MFE76FqTyN" target="_blank">Join our Discord!</a></b> Feedback is very welcome!<br />
                     Made by <b>@carrak</b> | Special thanks to <b>@haps</b> and <b>@nopies</b>
                 </span>
             </footer>
