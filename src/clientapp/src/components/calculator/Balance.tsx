@@ -81,7 +81,7 @@ class Balance extends Component<IBalanceProps, IBalanceState> {
         return <Fragment>
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
-                    Balance&nbsp;
+                    Balance
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item>

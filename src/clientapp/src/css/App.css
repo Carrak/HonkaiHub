@@ -20,6 +20,10 @@ body {
     display: flex;
 }
 
+.custom-tooltip {
+    margin-left: 5px;
+}
+
 a {
     color: #54fdff;
     text-decoration: none;

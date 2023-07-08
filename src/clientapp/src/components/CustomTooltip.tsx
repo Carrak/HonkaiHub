@@ -24,7 +24,7 @@ class CustomTooltip extends Component<ICustomTooltipProps, ICustomTooltipState> 
 
     render() {
         return <ClickAwayListener onClickAway={this.handleTooltipClose}>
-            <div>
+            <div className="custom-tooltip">
                 <Tooltip
                     PopperProps={{
                         disablePortal: true,

@@ -112,7 +112,7 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
         return <Fragment>
             <Grid container direction="column" rowSpacing={1.2}>
                 <Grid item className="top-note">
-                    Settings&nbsp;
+                    Settings
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 <Grid item>

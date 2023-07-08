@@ -112,7 +112,7 @@ class CustomRewards extends Component<ICustomRewardsProps, ICustomRewardsState> 
         return <Fragment>
             <Grid container direction="column" rowSpacing={1}>
                 <Grid item className="top-note">
-                    Custom rewards&nbsp;
+                    Custom rewards
                     <CustomTooltip tooltip={tooltip} />
                 </Grid>
                 {this.state.rewards?.map((x) => (<Grid item key={"rewards" + x.id}>
