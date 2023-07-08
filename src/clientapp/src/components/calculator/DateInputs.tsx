@@ -7,6 +7,8 @@ import CustomTooltip from "../CustomTooltip";
 import { Moment } from "moment";
 import moment from "moment";
 
+const tooltip = "Input the period for your calculations. Fields marked with * are required."
+
 interface IDateInputsProps {
     updateDates: (state: IDateInputsState, update: boolean) => any
 }
@@ -56,8 +58,6 @@ class DateInputs extends Component<IDateInputsProps, IDateInputsState> {
     }
 
     render() {
-        const tooltip = "Fields marked with * are required. Input the period for your calculations."
-
         let days: number | null = null
         if (this.state.valueTo && this.state.valueFrom)
             days = this.state.valueTo.diff(this.state.valueFrom, "day");

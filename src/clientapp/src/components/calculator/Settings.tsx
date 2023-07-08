@@ -5,6 +5,14 @@ import { bp, exalted, realm, manifold, select } from "../../consts/Dropdowns";
 import { getNum } from "../../consts/Utility";
 import CustomTooltip from "../CustomTooltip";
 
+const tooltip = <span>
+    Fields marked with * are required. For calculations abyss is only available for level 70 or higher. <br />
+    -- Hints -- <br />
+    1. Abyss tier<br />Choose the bracket that you can consistently retent in. <br />
+    2. Sign-in days claimed<br />How many times you logged into the game this month. Defaults to current day of the month if not specified. <br />
+    3. Monthly card claimed to 15<br />How many days you claimed for the 500 crystal bonus, e.g. if the page says '4/15', you specify this as 4.
+</span>
+
 interface ISettingsProps {
     updateSettings: (state: ISettingsState, update: boolean) => any
 }
@@ -93,14 +101,6 @@ class Settings extends Component<ISettingsProps, ISettingsState> {
     }
 
     render() {
-        const tooltip = <span>
-            Fields marked with * are required. For calculations abyss is only available for level 70 or higher. <br />
-            -- Hints -- <br />
-            1. Abyss tier<br />Choose the bracket that you can consistently retent in. <br />
-            2. Sign-in days claimed<br />How many times you logged into the game this month. Defaults to current day of the month if not specified. <br />
-            3. Monthly card claimed to 15<br />How many days you claimed for the 500 crystal bonus, e.g. if the page says '4/15', you specify this as 4.
-        </span>
-
         let abyssSelect;
         if (this.state.level) {
             if (this.state.level >= 70 && this.state.level <= 80)

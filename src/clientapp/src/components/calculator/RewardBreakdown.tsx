@@ -4,6 +4,8 @@ import { ICalculatorBreakdown } from '../Calculator'
 import { StyledTextField } from './textfields/StyledTextField'
 import CustomTooltip from '../CustomTooltip';
 
+const tooltip = "This section only includes crystal rewards, but cards are still included in Reward Total"
+
 interface IRewardBreakdownProps {
     breakdown: ICalculatorBreakdown
 }
@@ -11,8 +13,6 @@ interface IRewardBreakdownProps {
 class RewardBreakdown extends Component<IRewardBreakdownProps> {
 
     render() {
-        const tooltip = "This section only includes crystal rewards, but cards are still included in Reward Total"
-
         return <Fragment>
             <Grid container direction="row" rowSpacing={1.2} columnSpacing={1}>
                 <Grid item xs={12} className="top-note">
