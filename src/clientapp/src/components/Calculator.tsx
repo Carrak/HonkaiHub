@@ -209,24 +209,24 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
     render() {
         return <Fragment>
-            <Grid paddingLeft={2} paddingRight={2} container className="content">
+            <Grid paddingLeft={4} paddingRight={2} container className="content">
                 <Grid item xs={12} md={3.7} className="input-grid">
-                    <Grid container columnSpacing={2.5} rowSpacing={1}>
+                    <Grid container columnSpacing={2.5}>
                         <Grid item xs={12}><DateInputs updateDates={this.updateDates} /></Grid>
                         <Grid item xs={6}><Settings updateSettings={this.updateSettings} /></Grid>
                         <Grid item xs={6}><Balance updateCheckmarks={this.updateCheckmarks} updateBalance={this.updateBalance} /></Grid>
-                        <Grid item xs={12}><CustomRewards updateCustomRewards={this.updateCustomRewards}/></Grid>
+                        <Grid item xs={12} mt={2}><CustomRewards updateCustomRewards={this.updateCustomRewards}/></Grid>
                     </Grid>
                 </Grid>
                 <Grid item md={0.5} display="flex" justifyContent="center">
                     <Divider orientation="vertical" sx={{ backgroundColor: "#FFFFFF", borderRightWidth: '2px' }} />
                 </Grid>
                 <Grid item xs={12} md={2.2} className="output-grid">
-                    <Grid container direction="column" rowSpacing={2}>
-                        <Grid item paddingLeft={2} paddingRight={2}>
+                    <Grid container direction="row">
+                        <Grid xs={12} item paddingLeft={2} paddingRight={2}>
                             <RewardTotal totals={this.state.total} />
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={12} mt={2}>
                             <RewardBreakdown breakdown={this.state.breakdown}/>
                         </Grid>
                     </Grid>
