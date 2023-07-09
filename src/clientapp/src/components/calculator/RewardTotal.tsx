@@ -4,14 +4,17 @@ import { ICalculatorTotal } from "../Calculator";
 import { conversionCurrencies, select } from "../../consts/Dropdowns";
 import CustomTooltip from "../CustomTooltip";
 import { StyledTextField } from "./textfields/StyledTextField";
+import { CurrenciesDisplay } from "./CurrenciesDisplay";
 
-const rewardTotalTooltip = "Reward total is your balance plus everything you earn across the specified period. " +
-    "It is calculated when all the required fields are filled. " +
-    "Card calculations also include the focused card you can buy from the BP shop."
-
-const currencyConverterTooltip = "Choose a currency to convert your crystals to. The converted amount is added to the existing amount, " +
-    "e. g. 1000 crystals and 10 focused cards would convert to 13 cards and 160 crystals. " +
-    "The rest of the rewards remain unchanged."
+const tooltip = <span>
+    Total includes:<br />
+    - balance<br />
+    - custom rewards<br />
+    - earnings across specified period (including focused card from BP)<br />
+    It is calculated when all the required fields are filled. <br/><br/>
+    "Convert to" options converts crystals to a given currency,
+    e. g. 1000 crystals and 10 focused cards would convert to 13 cards and 160 crystals.
+    </span>
 
 interface IRewardTotalProps {
     totals: ICalculatorTotal
@@ -30,15 +33,13 @@ const currencyPrices: number[] = [
     200  // dorm
 ]
 
-const changedColor: string = "#7ee588"
-
 class RewardTotal extends Component<IRewardTotalProps, IRewardTotalState> {
 
     constructor(props: IRewardTotalProps) {
         super(props)
 
         this.state = {
-            conversionCurrency: 1
+            conversionCurrency: -1
         }
 
         this.onChangeCurrency = this.onChangeCurrency.bind(this);
@@ -50,7 +51,7 @@ class RewardTotal extends Component<IRewardTotalProps, IRewardTotalState> {
 
     render() {
         
-        let currencyValues: number[] = [
+        let values: number[] = [
             this.props.totals.grandTotal,
             this.props.totals.focused,
             this.props.totals.expansion,
@@ -59,70 +60,49 @@ class RewardTotal extends Component<IRewardTotalProps, IRewardTotalState> {
             this.props.totals.dorm
         ]
 
-        let elements: JSX.Element[] = currencyValues.map(x => <span>{x}</span>);
+        let highlights: boolean[] = new Array<boolean>(values.length);
 
-        let cc = this.state.conversionCurrency;
-        let oldValue = currencyValues[cc];
+        if (this.state.conversionCurrency != -1) {
 
-        currencyValues[0] = this.props.totals.grandTotal % currencyPrices[cc];
-        currencyValues[cc] += + Math.floor(this.props.totals.grandTotal / currencyPrices[cc]);
+            let cc = this.state.conversionCurrency;
+            let oldValue = values[cc];
 
-        if (oldValue != currencyValues[cc]) {
-            elements[0] = <b style={{ color: changedColor }} >{currencyValues[0]}</b>
-            elements[cc] = <b style={{ color: changedColor }}>{currencyValues[cc]}</b>
+            values[0] = this.props.totals.grandTotal % currencyPrices[cc];
+            values[cc] += + Math.floor(this.props.totals.grandTotal / currencyPrices[cc]);
+
+            if (oldValue != values[cc]) {
+                highlights[0] = true;
+                highlights[cc] = true;
+            }
         }
 
         return <Fragment>
-            <Grid className="reward-total-text" container direction="column" rowSpacing={0.6}>
-                <Grid item className="top-note">
-                    Total&nbsp;
-                    <CustomTooltip tooltip={rewardTotalTooltip} />
+            <Grid container className="reward-total-text" display="flex" alignItems="center" justifyContent="center" direction="row" rowGap={1}>
+                <Grid item xs={12} className="top-note">
+                    Total
+                    <CustomTooltip tooltip={tooltip} />
                 </Grid>
-                <Grid item display="flex" justifyContent="center" alignItems="center">
-                    <img src="Crystals.webp" className="currency-icon" alt="crystals" />{this.props.totals.grandTotal}&nbsp;&nbsp;
+                <Grid item xs="auto">
+                    <StyledTextField
+                        label="Convert to"
+                        value={this.state.conversionCurrency ?? ""}
+                        onChange={(e) => this.onChangeCurrency(e)}
+                        select
+                        id={"currency_converter"}>
+                        {select(conversionCurrencies)}
+                    </StyledTextField>
                 </Grid>
-                <Grid item display="flex" justifyContent="center" alignItems="center">
-                    <img src="Focused.webp" className="currency-icon" alt="focused cards" />{this.props.totals.focused}&nbsp;&nbsp;
-                    <img src="Expansion.webp" className="currency-icon" alt="expansion cards" />{this.props.totals.expansion}
-                </Grid>
-                <Grid item display="flex" justifyContent="center" alignItems="center">
-                    <img src="ELF.webp" className="currency-icon" alt="ELF cards" />{this.props.totals.elf}&nbsp;&nbsp;
-                    <img src="SP.webp" className="currency-icon" alt="SP cards" />{this.props.totals.sp}&nbsp;&nbsp;
-                    <img src="Dorm.webp" className="currency-icon" alt="dorm cards" />{this.props.totals.dorm}
-                </Grid>
-                <Grid item display="flex" justifyContent="center" alignItems="center">
-                </Grid>
-                <Grid item mt={1} mb={1}>
-                    <Grid container direction="row" justifyContent="center">
-                        <Stack display="flex" flexDirection="column" spacing={0.6}> 
-                            <div className="top-note">
-                                Convert crystals to&nbsp;
-                                <CustomTooltip tooltip={currencyConverterTooltip} />
-                            </div>
-                            <StyledTextField
-                                label=""
-                                value={this.state.conversionCurrency ?? ""}
-                                onChange={(e) => this.onChangeCurrency(e)}
-                                select
-                                id={"currency_converter"}>
-                                {select(conversionCurrencies)}
-                            </StyledTextField>
-                            <Grid className="reward-total-text" container direction="column" rowSpacing={0.6}>
-                                <Grid item display="flex" justifyContent="center" alignItems="center">
-                                    <img src="Crystals.webp" className="currency-icon" alt="crystals" />{elements[0]}
-                                </Grid>
-                                <Grid item display="flex" justifyContent="center" alignItems="center">
-                                    <img src="Focused.webp" className="currency-icon" alt="focused cards" />{elements[1]}&nbsp;&nbsp;
-                                    <img src="Expansion.webp" className="currency-icon" alt="expansion cards" />{elements[2]}
-                                </Grid>
-                                <Grid item display="flex" justifyContent="center" alignItems="center">
-                                    <img src="ELF.webp" className="currency-icon" alt="ELF cards" />{elements[3]}&nbsp;&nbsp;
-                                    <img src="SP.webp" className="currency-icon" alt="SP cards" />{elements[4]}&nbsp;&nbsp;
-                                    <img src="Dorm.webp" className="currency-icon" alt="dorm cards" />{elements[5]}
-                                </Grid>
-                            </Grid> 
-                        </Stack>
-                    </Grid>
+                <Grid item xs={10} display="flex" alignItems="center" mt={2}>
+                    <CurrenciesDisplay
+                        currencies={[
+                            { img: "Crystals.webp", alt: "crystals", value: values[0], highlighted: highlights[0], canHide: false },
+                            { img: "Focused.webp", alt: "focused", value: values[1], highlighted: highlights[1], canHide: true },
+                            { img: "Expansion.webp", alt: "expansion", value: values[2], highlighted: highlights[2], canHide: true },
+                            { img: "ELF.webp", alt: "elf", value: values[3], highlighted: highlights[3], canHide: true },
+                            { img: "SP.webp", alt: "sp", value: values[4], highlighted: highlights[4], canHide: true },
+                            { img: "Dorm.webp", alt: "dorm", value: values[5], highlighted: highlights[5], canHide: true }
+                        ]}
+                    />
                 </Grid>
             </Grid>
         </Fragment>

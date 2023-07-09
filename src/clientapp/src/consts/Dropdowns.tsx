@@ -134,6 +134,10 @@ export const currencies: DropdownOption[] = [
 
 export const conversionCurrencies: DropdownOption[] = [
     {
+        label: "Don't convert",
+        value: -1
+    },
+    {
         label: "Focused cards",
         value: 1
     },
