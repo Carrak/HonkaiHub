@@ -209,7 +209,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
 
     render() {
         return <Fragment>
-            <Grid paddingLeft={4} paddingRight={2} container className="content">
+            <Grid container className="content">
                 <Grid item xs={12} md={3.7} className="input-grid">
                     <Grid container columnSpacing={2.5}>
                         <Grid item xs={12}><DateInputs updateDates={this.updateDates} /></Grid>

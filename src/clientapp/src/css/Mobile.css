@@ -16,6 +16,11 @@
         font-size: 13px !important;
     }
 
+    .content {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+    }
+
     .footer {
         font-size: 13px !important;
         position: absolute !important;
