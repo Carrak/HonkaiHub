@@ -43,7 +43,7 @@ interface ICalculatorBreakdown {
     readonly abyss: number
     readonly elysianRealm: number
     readonly maintenance: number
-    readonly extras: number
+    readonly streamsSurveys: number
     readonly monthlyCard: number
     readonly bp: number
     readonly arena: number
@@ -83,7 +83,7 @@ class Calculator extends Component<ICalculatorProps, ICalculatorState> {
                 abyss: 0,
                 elysianRealm: 0,
                 maintenance: 0,
-                extras: 0,
+                streamsSurveys: 0,
                 monthlyCard: 0,
                 bp: 0,
                 arena: 0,

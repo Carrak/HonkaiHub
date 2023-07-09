@@ -41,7 +41,7 @@ class RewardBreakdown extends Component<IRewardBreakdownProps> {
                     <StyledTextField id="maintenance" label="Maintenance" value={this.props.breakdown.maintenance} />
                 </Grid>
                 <Grid item xs={6}>
-                    <StyledTextField id="extras" label="Streams/codes" value={this.props.breakdown.extras} />
+                    <StyledTextField id="extras" label="Streams/codes" value={this.props.breakdown.streamsSurveys} />
                 </Grid>
                 <Grid item xs={6}>
                     <StyledTextField id="arena" label="Arena" value={this.props.breakdown.arena} />
