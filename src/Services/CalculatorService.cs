@@ -230,9 +230,14 @@ namespace HonkaiHub.Services
             int levelThisVersion = (daysCurrentVersion * _co.BpAverageExpDaily / _co.BpExpPerLevel) + currentBpLevel;
 
             // this version
-            int vanguardCanClaim = _co.VanguardRewards.GetReward(levelThisVersion) - _co.VanguardRewards.GetReward(currentBpLevel);
-            int knightCanClaim = bpThisVersion == Battlepass.KnightPaladin ?
-                _co.KnightRewards.GetReward(levelThisVersion) - _co.KnightRewards.GetReward(currentBpLevel) : 0;
+            int vTotal = _co.VanguardRewards.GetReward(levelThisVersion);
+            int vClaimed = _co.VanguardRewards.GetReward(currentBpLevel);
+
+            int kTotal = _co.KnightRewards.GetReward(levelThisVersion);
+            int kClaimed = _co.KnightRewards.GetReward(currentBpLevel);
+
+            int vanguardCanClaim = vTotal - vClaimed;
+            int knightCanClaim = bpThisVersion == Battlepass.KnightPaladin ? kTotal - kClaimed : 0;
 
             // last version
             int vanguardLastVersion = 0;
