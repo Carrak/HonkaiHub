@@ -60,12 +60,11 @@ namespace HonkaiHub.Services
                             );
 
             int sum = breakdown.Sum();
-            int bonusFocused = GetBattlePassCards(fullVersions, cp.BpThisVersion, cp.BpFutureVersions, cp.BpLevel, daysLeftThisVersion, daysLastVersion);
-
+           
             var total = new CalculatorRewardTotal(
                 grandTotal: sum,
                 expansion: cp.BalanceExpansionCards + customsDict[Currency.Expansion],
-                focused: cp.BalanceFocusedCards + bonusFocused + customsDict[Currency.Focused],
+                focused: cp.BalanceFocusedCards + customsDict[Currency.Focused],
                 elf: cp.BalanceElfCards + customsDict[Currency.Elf],
                 sp: cp.BalanceSpCards + customsDict[Currency.Sp],
                 dorm: cp.BalanceDormCards + customsDict[Currency.Dorm]);
@@ -207,22 +206,6 @@ namespace HonkaiHub.Services
                 reward -= 100;
 
             return reward;
-        }
-
-        private int GetBattlePassCards(int fullVersions, Battlepass bpThisVersion, Battlepass bpFutureVersions, int bpLevel, int daysLeftThisVersion, int daysLastVersion)
-        {
-            int bonusFocused = fullVersions > 0 ? fullVersions : 0;
-
-            int cardAtLevelThisVersion = bpThisVersion == Battlepass.KnightPaladin ? 6 : 16;
-            int cardAtLevelFutureVersions = bpFutureVersions == Battlepass.KnightPaladin ? 6 : 16;
-
-            if (bpLevel < cardAtLevelThisVersion)
-                bonusFocused += (_co.BpAverageExpDaily * daysLeftThisVersion / _co.BpExpPerLevel) >= cardAtLevelThisVersion ? 1 : 0;
-
-            if (fullVersions > -1)
-                bonusFocused += (_co.BpAverageExpDaily * daysLastVersion / _co.BpExpPerLevel) >= cardAtLevelFutureVersions ? 1 : 0;
-
-            return bonusFocused;
         }
 
         private int GetBattlePassTotal(int fullVersions, int currentBpLevel, Battlepass bpThisVersion, Battlepass bpNextVersion, int daysCurrentVersion, int daysLastVersion)
